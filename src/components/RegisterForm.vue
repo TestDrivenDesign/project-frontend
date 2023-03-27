@@ -88,7 +88,7 @@ const submitRegisterForm = async () => {
   const result = await v$.value.$validate()
 
   if (result) {
-    console.log('success')
+    console.log(formData.value)
   }
 }
 </script>

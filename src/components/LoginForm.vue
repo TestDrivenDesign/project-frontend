@@ -51,7 +51,7 @@ const submitLoginForm = async () => {
   const result = await v$.value.$validate()
 
   if (result) {
-    console.log('success')
+    console.log(formData.value)
   } else {
     console.log('form not submitted')
   }
