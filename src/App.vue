@@ -13,10 +13,10 @@ const handleLogOut = () => {
 <template>
   <header>
     <HeaderComponent />
-    <nav>
-      <RouterLink to="/">Home</RouterLink> |
-      <RouterLink to="/skinformation">Skinformation</RouterLink> |
-      <RouterLink to="/support">Get Support</RouterLink> |
+    <nav class="navbar">
+      <RouterLink to="/">Home</RouterLink>
+      <RouterLink to="/skinformation">Skinformation</RouterLink>
+      <RouterLink to="/support">Get Support</RouterLink>
       <div v-if="user.isUserLoggedIn" class="user">
         <RouterLink to="/profile">{{ user.login.firstName }} {{ user.login.lastName }}</RouterLink>
         <button @click="handleLogOut">Log Out</button>
@@ -29,14 +29,14 @@ const handleLogOut = () => {
 </template>
 
 <style scoped>
-.user {
-  display: inline-block;
-}
-/* .visible {
-  display: inline-block;
+.navbar {
+  width: 100vw;
+  padding: 20px;
+  display: flex;
+  justify-content: flex-start;
 }
 
-.hidden {
-  display: none;
-} */
+.navbar a {
+  margin-right: 10px;
+}
 </style>

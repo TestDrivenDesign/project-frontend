@@ -7,7 +7,7 @@ export const useUserStore = defineStore('user', () => {
     lastName: 'Doe',
     email: 'gregdoe@gmail.com'
   });
-  const isUserLoggedIn = ref(true);
+  const isUserLoggedIn = ref(false);
   function logUserIn(userObject) {
     login.value = userObject;
     if (login.value.email !== '') {
