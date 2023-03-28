@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700');
 
 * {
   margin: 0;
@@ -10,4 +10,5 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+  font-family: 'Quicksand', sans-serif;
 }
