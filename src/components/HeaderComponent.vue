@@ -9,6 +9,6 @@
 <style scoped>
 .header {
   text-align: center;
-  margin: 10px;
+  margin: 5px;
 }
 </style>

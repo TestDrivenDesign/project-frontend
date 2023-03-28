@@ -13,15 +13,16 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  background-image: url('https://ic.c4assets.com/brands/da-ali-g-show/6e2bd164-188d-439b-8dde-187547350fe1.jpg?interpolation=progressive-bicubic&output-format=jpeg&output-quality=90&resize=1160px:*');
+  background-image: url('https://cdn.pixabay.com/photo/2017/11/06/15/30/elephants-2923917_960_720.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
 }
 
 h2 {
+  width: 50%;
   font-size: 4rem;
-  color: red;
+  color: #fff;
   text-transform: uppercase;
 }
 </style>
