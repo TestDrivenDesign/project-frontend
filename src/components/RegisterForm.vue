@@ -21,7 +21,7 @@
         {{ error.$message }}
       </small>
     </div>
-    <div class="register-field">
+    <div class="register-field password">
       <label for="password">Password: </label>
       <input id="password" name="password" type="password" v-model="formData.password" />
       <small class="error" v-for="error in v$.password.$errors" :key="error.$uid">
@@ -49,6 +49,18 @@ import { ref, computed } from 'vue'
 import useVuelidate from '@vuelidate/core'
 import { required, email, minLength, sameAs, helpers } from '@vuelidate/validators'
 
+const passwordRegx = helpers.regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/) // Minimum eight characters, at least one uppercase letter, one lowercase letter and one number
+
+// const checkPassword = (password) => {
+//   if (password.length < 6) {
+//     return helpers.withMessage('Password must be at least 6 characters long', minLength(6))
+//   } else
+//     return helpers.withMessage(
+//       'Password must have minimum one uppercase letter, one lowercase letter and a number',
+//       passwordRegx
+//     )
+// }
+
 const formData = ref({
   firstName: '',
   lastName: '',
@@ -73,10 +85,15 @@ const rules = computed(() => {
     },
     password: {
       reuired: helpers.withMessage('Password is required field', required),
-      minLength: helpers.withMessage('Password must be at least 6 characters long', minLength(6))
+      // minLength: helpers.withMessage('Password must be at least 6 characters long', minLength(6))
+      passwordCheck: helpers.withMessage(
+        'Password must be minimum 8 characters, have one uppercase letter, one lowercase letter and a number',
+        passwordRegx
+      )
+      // passwordCheck: checkPassword(formData.value.password)
     },
     passwordConfirm: {
-      required: helpers.withMessage('Please type your password again', required),
+      // required: helpers.withMessage('Please type your password again', required),
       sameAs: helpers.withMessage("Passwords don't match!", sameAs(formData.value.password))
     }
   }
@@ -98,6 +115,9 @@ const submitRegisterForm = async () => {
   position: relative;
   margin-bottom: 10px;
   padding-bottom: 20px;
+}
+.register-field.password {
+  padding-bottom: 30px;
 }
 
 .register-field label {
