@@ -14,6 +14,7 @@
         {{ error.$message }}
       </small>
     </div>
+    <p class="error-msg" v-if="errorMsg">{{ errorMsg }}</p>
     <button type="submit">Login</button>
   </form>
   <p class="register-msg">
@@ -26,11 +27,29 @@ import { ref, computed } from 'vue'
 import { RouterLink } from 'vue-router'
 import useVuelidate from '@vuelidate/core'
 import { required, email, minLength, helpers } from '@vuelidate/validators'
+import { useRegUsersStore } from '../stores/registeredUsers'
+import { useUserStore } from '../stores/user'
+import router from '../router/index'
+
+const usersRegister = useRegUsersStore()
+const { registeredUsers } = usersRegister
+
+const user = useUserStore()
+const { logUserIn } = user
 
 const formData = ref({
   email: '',
   password: ''
 })
+const errorMsg = ref('')
+
+const updateMsg = (message) => {
+  errorMsg.value = message
+}
+
+const redirectPage = () => {
+  router.push({ path: '/profile' })
+}
 
 const rules = computed(() => {
   return {
@@ -45,13 +64,34 @@ const rules = computed(() => {
   }
 })
 
+const loginUserFind = () => {
+  const loggedUser = registeredUsers.filter((user) => {
+    return user.email === formData.value.email && user.password === formData.value.password
+  })
+  if (loggedUser.length) {
+    return loggedUser[0]
+  } else {
+    updateMsg('Email or password incorrect!')
+  }
+}
+
 const v$ = useVuelidate(rules, formData)
 
 const submitLoginForm = async () => {
   const result = await v$.value.$validate()
 
   if (result) {
-    console.log(formData.value)
+    const loggedUser = loginUserFind()
+
+    if (loggedUser) {
+      const loginDetails = {
+        firstName: loggedUser.firstName,
+        lastName: loggedUser.lastName,
+        email: loggedUser.email
+      }
+      logUserIn(loginDetails)
+      redirectPage()
+    }
   } else {
     console.log('form not submitted')
   }
@@ -88,6 +128,9 @@ const submitLoginForm = async () => {
   position: absolute;
   bottom: 0;
   left: 0;
+  color: #e74c3c;
+}
+p.error-msg {
   color: #e74c3c;
 }
 
