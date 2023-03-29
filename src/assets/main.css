@@ -1,14 +1,16 @@
 @import url('https://fonts.googleapis.com/css?family=Quicksand:400,500,700');
 
-* {
+html,
+body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Quicksand', sans-serif;
+  /* background-color: #000; */
 }
 
 #app {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  font-family: 'Quicksand', sans-serif;
 }
