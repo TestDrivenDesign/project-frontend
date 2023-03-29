@@ -22,7 +22,10 @@
 h2 {
   width: 50%;
   font-size: 4rem;
-  color: #fff;
   text-transform: uppercase;
+  background-image: radial-gradient(circle, #553c9a, #ee4b2b);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
 }
 </style>
