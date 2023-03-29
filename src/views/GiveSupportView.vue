@@ -1,6 +1,6 @@
 <template>
-  <div class="get-support">
-    <h1>this is get support</h1>
+  <div>
+    <h1>Support</h1>
   </div>
 </template>
 
