@@ -5,7 +5,8 @@
     </div>
     <div id="mainListDiv" class="main_list">
       <RouterLink to="/skinformation">Skinformation</RouterLink>
-      <RouterLink to="/support">Get Support</RouterLink>
+      <RouterLink to="/help">Help & Support</RouterLink>
+      <RouterLink to="/support">Support The Fight</RouterLink>
       <div v-if="user.isUserLoggedIn" class="user">
         <RouterLink to="/profile">{{ user.login.firstName }} {{ user.login.lastName }}</RouterLink>
         <button @click="handleLogOut">Log Out</button>
