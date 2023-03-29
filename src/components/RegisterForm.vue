@@ -40,6 +40,7 @@
         {{ error.$message }}
       </small>
     </div>
+    <p class="msg" v-if="successMsg">{{ successMsg }}</p>
     <button>Register</button>
   </form>
 </template>
@@ -48,18 +49,17 @@
 import { ref, computed } from 'vue'
 import useVuelidate from '@vuelidate/core'
 import { required, email, minLength, sameAs, helpers } from '@vuelidate/validators'
+import { useRegUsersStore } from '../stores/registeredUsers'
+import { useUserStore } from '../stores/user'
+import router from '../router/index'
+
+const usersRegister = useRegUsersStore()
+const { addNewUser } = usersRegister
+
+const user = useUserStore()
+const { logUserIn } = user
 
 const passwordRegx = helpers.regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/) // Minimum eight characters, at least one uppercase letter, one lowercase letter and one number
-
-// const checkPassword = (password) => {
-//   if (password.length < 6) {
-//     return helpers.withMessage('Password must be at least 6 characters long', minLength(6))
-//   } else
-//     return helpers.withMessage(
-//       'Password must have minimum one uppercase letter, one lowercase letter and a number',
-//       passwordRegx
-//     )
-// }
 
 const formData = ref({
   firstName: '',
@@ -68,6 +68,15 @@ const formData = ref({
   password: '',
   passwordConfirm: ''
 })
+const successMsg = ref('')
+
+const redirectPage = () => {
+  router.push({ path: '/profile' })
+}
+
+const updateMsg = (message) => {
+  successMsg.value = message
+}
 
 const rules = computed(() => {
   return {
@@ -85,12 +94,10 @@ const rules = computed(() => {
     },
     password: {
       reuired: helpers.withMessage('Password is required field', required),
-      // minLength: helpers.withMessage('Password must be at least 6 characters long', minLength(6))
       passwordCheck: helpers.withMessage(
         'Password must be minimum 8 characters, have one uppercase letter, one lowercase letter and a number',
         passwordRegx
       )
-      // passwordCheck: checkPassword(formData.value.password)
     },
     passwordConfirm: {
       // required: helpers.withMessage('Please type your password again', required),
@@ -105,7 +112,20 @@ const submitRegisterForm = async () => {
   const result = await v$.value.$validate()
 
   if (result) {
-    console.log(formData.value)
+    addNewUser(formData.value)
+    updateMsg('Registration successfull')
+    const loginDetails = {
+      firstName: formData.value.firstName,
+      lastName: formData.value.lastName,
+      email: formData.value.email
+    }
+    logUserIn(loginDetails)
+    redirectPage()
+    // formData.value.firstName = ''
+    // formData.value.lastName = ''
+    // formData.value.email = ''
+    // formData.value.password = ''
+    // formData.value.passwordConfirm = ''
   }
 }
 </script>
@@ -144,6 +164,10 @@ const submitRegisterForm = async () => {
   bottom: 0;
   left: 0;
   color: #e74c3c;
+}
+
+.form .msg {
+  color: #4bb543;
 }
 
 .form button {

@@ -12,9 +12,17 @@
           <input id="upload" type="file" @change="uploadFile" accept="image/*" />
         </div>
       </div>
+      <div class="info-panel">
+        <p>
+          Your date of birth: <span>{{ date_of_birth }}</span>
+        </p>
+        <p>
+          chosen file: <span>{{ fileName }}</span>
+        </p>
+      </div>
       <div class="buttons-container">
-        <button class="confirm">Send Photo</button>
-        <button class="cancel">Cancel</button>
+        <button @click="uploadPhoto($emit)" class="confirm">Send Photo</button>
+        <button @click="cancelPhotoUpload($emit)" class="cancel">Cancel</button>
       </div>
     </div>
   </div>
@@ -23,15 +31,30 @@
 <script setup>
 import { ref, computed } from 'vue'
 
+const date_of_birth = ref('')
+const file = ref(null)
+const fileName = ref('')
+
+const uploadFile = (event) => {
+  file.value = event.target.files[0]
+  fileName.value = event.target.files[0].name
+}
+
+const uploadPhoto = ($emit) => {
+  $emit('close')
+  console.log('photo succesfully uploaded')
+}
+
+const cancelPhotoUpload = ($emit) => {
+  $emit('close')
+  // date_of_birth.value = ''
+  // file.value = null
+  // fileName.value = ''
+  console.log('cancelled')
+}
 // const fileName = computed(() => file.value?.name)
 // const fileExtension = computed(() => fileName.value?.substr(fileName.value?.lastIndexOf('.') + 1))
 // const fileMimeType = computed(() => file.value?.type)
-
-// const uploadFile = (event) => {
-//   file.value = event.target.files[0]
-
-//   console.log(file)
-// }
 
 // const submitFile = async () => {
 //   const reader = new FileReader()
@@ -55,10 +78,9 @@ import { ref, computed } from 'vue'
 // }
 </script>
 
-const date_of_birth = ref('') const file = ref(null)
 <style scoped>
 div.modal {
-  display: none;
+  display: block;
   position: fixed;
   z-index: 1;
   left: 0;
@@ -107,6 +129,10 @@ div.input-field {
 div.input-field input {
   align-self: center;
 } */
+
+.info-panel p span {
+  font-weight: bold;
+}
 div.buttons-container {
   display: flex;
   justify-content: center;
