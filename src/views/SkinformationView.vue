@@ -38,8 +38,8 @@ Most Basal cell carcinomas are painless, although sometimes they can be itchy or
     name: 'benign keratosis',
     img1: 'src/img/benign_keratosis1.jpg',
     img2: 'src/img/benign_keratosis2.jpg',
-    info: `????`,
-    link: '?????'
+    info: `A benign keratosis, commonly known as a Seborrheic Keratosis is a harmless skin growth. They are brown, black or light tan in colour and look waxy or scaly and slightly raised. Benign keratosis become more common as you age.`,
+    link: 'https://www.mayoclinic.org/diseases-conditions/seborrheic-keratosis/symptoms-causes/syc-20353878'
   },
   {
     name: 'dermatofibroma',
