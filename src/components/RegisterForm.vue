@@ -40,7 +40,8 @@
         {{ error.$message }}
       </small>
     </div>
-    <p class="msg" v-if="successMsg">{{ successMsg }}</p>
+    <p class="success-msg" v-if="successMsg">{{ successMsg }}</p>
+    <p class="error-msg" v-else-if="errorMsg">{{ errorMsg }}</p>
     <button>Register</button>
   </form>
 </template>
@@ -54,7 +55,7 @@ import { useUserStore } from '../stores/user'
 import router from '../router/index'
 
 const usersRegister = useRegUsersStore()
-const { addNewUser } = usersRegister
+const { addNewUser, registeredUsers } = usersRegister
 
 const user = useUserStore()
 const { logUserIn } = user
@@ -69,13 +70,26 @@ const formData = ref({
   passwordConfirm: ''
 })
 const successMsg = ref('')
+const errorMsg = ref('')
+
+const isUserRegistered = () => {
+  const userExist = registeredUsers.some((user) => {
+    return user.email === formData.value.email
+  })
+
+  return userExist
+}
 
 const redirectPage = () => {
   router.push({ path: '/profile' })
 }
 
-const updateMsg = (message) => {
-  successMsg.value = message
+const updateMsg = (result, message) => {
+  if (result === 'error') {
+    errorMsg.value = message
+  } else if (result === 'success') {
+    successMsg.value = message
+  }
 }
 
 const rules = computed(() => {
@@ -112,20 +126,26 @@ const submitRegisterForm = async () => {
   const result = await v$.value.$validate()
 
   if (result) {
-    addNewUser(formData.value)
-    updateMsg('Registration successfull')
-    const loginDetails = {
-      firstName: formData.value.firstName,
-      lastName: formData.value.lastName,
-      email: formData.value.email
+    const userRegistered = isUserRegistered()
+
+    if (!userRegistered) {
+      addNewUser(formData.value)
+      updateMsg('success', 'Registration successfull')
+      const loginDetails = {
+        firstName: formData.value.firstName,
+        lastName: formData.value.lastName,
+        email: formData.value.email
+      }
+      logUserIn(loginDetails)
+      redirectPage()
+      // formData.value.firstName = ''
+      // formData.value.lastName = ''
+      // formData.value.email = ''
+      // formData.value.password = ''
+      // formData.value.passwordConfirm = ''
+    } else {
+      updateMsg('error', 'This email already exist!')
     }
-    logUserIn(loginDetails)
-    redirectPage()
-    // formData.value.firstName = ''
-    // formData.value.lastName = ''
-    // formData.value.email = ''
-    // formData.value.password = ''
-    // formData.value.passwordConfirm = ''
   }
 }
 </script>
@@ -166,8 +186,11 @@ const submitRegisterForm = async () => {
   color: #e74c3c;
 }
 
-.form .msg {
+.form .success-msg {
   color: #4bb543;
+}
+.form .error-msg {
+  color: #e74c3c;
 }
 
 .form button {
