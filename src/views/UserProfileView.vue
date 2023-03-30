@@ -28,10 +28,6 @@ import PhotoUpload from '../components/PhotoUpload.vue'
 
 const modalActive = ref(false)
 
-const
-
-const submitPhoto = () => {}
-
 const user = useUserStore()
 const { login } = user
 </script>
