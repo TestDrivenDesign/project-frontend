@@ -7,7 +7,16 @@ export const useUserStore = defineStore('user', () => {
     lastName: 'Doe',
     email: 'gregdoe@gmail.com'
   });
-  const isUserLoggedIn = ref(true);
+  const isUserLoggedIn = ref(false);
+
+  // const pageRedirect = computed((isUserLoggedIn) => {
+  //   if (isUserLoggedIn) {
+  //     return '/profile';
+  //   } else {
+  //     return '/';
+  //   }
+  // });
+
   function logUserIn(userObject) {
     login.value = userObject;
     if (login.value.email !== '') {

@@ -19,11 +19,19 @@
 <script setup>
 import { RouterLink } from 'vue-router'
 import { useUserStore } from '../stores/user'
+import router from '../router/index'
 
 const user = useUserStore()
 
+const { logUserOut } = user
+
+const redirectPage = () => {
+  router.push({ path: '/' })
+}
+
 const handleLogOut = () => {
-  user.logUserOut()
+  logUserOut()
+  redirectPage()
 }
 </script>
 
