@@ -26,6 +26,7 @@ import { RouterLink } from 'vue-router'
 import { useUserStore } from '../stores/user'
 import PhotoUpload from '../components/PhotoUpload.vue'
 
+
 const user = useUserStore()
 const { login } = user
 
