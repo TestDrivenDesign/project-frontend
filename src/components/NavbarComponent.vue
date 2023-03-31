@@ -1,12 +1,11 @@
 <template>
   <nav class="navbar">
     <div class="logo">
-      <RouterLink to="/">Home / Logo ?</RouterLink>
+      <RouterLink to="/"> Home </RouterLink>
     </div>
+    <img class="ribbon" src="../img/black-ribbon.png" alt="black ribbon" />
     <div id="mainListDiv" class="main_list">
-      <RouterLink to="/skinformation"
-        ><i class="fa-sharp fa-regular fa-circle-info"></i>Skinformation</RouterLink
-      >
+      <RouterLink to="/skinformation">Skinformation</RouterLink>
       <RouterLink to="/help">Help & Support</RouterLink>
       <RouterLink to="/support">Support The Fight</RouterLink>
       <div v-if="user.isUserLoggedIn" class="user">
@@ -41,11 +40,10 @@ const handleLogOut = () => {
 
 <style scoped>
 .navbar {
-  background-color: transparent;
   width: 100%;
-  height: 50px;
-  line-height: 50px;
-  font-size: 1.4rem;
+  height: 60px;
+  line-height: 60px;
+  font-size: 1.8rem;
   text-align: center;
   border-bottom: 2px solid #eee;
 }
@@ -54,42 +52,50 @@ const handleLogOut = () => {
   margin-right: 10px;
 }
 .navbar div.logo {
+  position: relative;
   float: left;
   width: auto;
   height: auto;
-  padding-left: 3rem;
+  padding-left: 1.5rem;
+  z-index: 1;
 }
 
 .navbar div.logo a {
   text-decoration: none;
-  padding: 10px;
+  padding: 15px;
   font-weight: bold;
-  color: #eee;
+  color: #205295;
+}
+
+img.ribbon {
+  position: absolute;
+  left: 28px;
+  top: 12px;
+  width: 22px;
+  z-index: 0;
 }
 
 .navbar div.logo a:hover {
-  background-color: rgba(44, 116, 179, 0.3);
+  background-color: rgba(0, 0, 0, 0.1);
   /* border-bottom: 3px solid #2c74b3; */
 }
 
 .navbar div.main_list {
   float: right;
-  /* width: 100%; */
-  padding-right: 3rem;
+  padding-right: 1rem;
 }
 
 .navbar div.main_list a {
   text-decoration: none;
   font-weight: bold;
-  color: #eee;
-  padding: 10px;
+  color: #205295;
+  padding: 15px;
 }
 .navbar div.main_list div.user {
   display: inline-block;
 }
 .navbar div.main_list a:hover {
-  background-color: rgba(44, 116, 179, 0.3);
-  /* border-bottom: 3px solid #2c74b3; */
+  background-color: rgba(0, 0, 0, 0.1);
 }
 
 /* CSS */
