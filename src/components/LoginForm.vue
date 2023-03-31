@@ -85,8 +85,8 @@ const submitLoginForm = async () => {
 
     if (loggedUser) {
       const loginDetails = {
-        firstName: loggedUser.firstName,
-        lastName: loggedUser.lastName,
+        first_name: loggedUser.firstName,
+        last_name: loggedUser.lastName,
         email: loggedUser.email
       }
       logUserIn(loginDetails)

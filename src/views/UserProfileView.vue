@@ -1,8 +1,9 @@
 <template>
   <div class="user-profile">
     <h2>User Profile</h2>
-    <p>First Name: {{ login.firstName }}</p>
-    <p>Last Name: {{ login.lastName }}</p>
+    <p>User ID: {{ login.user_id }}</p>
+    <p>First Name: {{ login.first_name }}</p>
+    <p>Last Name: {{ login.last_name }}</p>
     <p>Email Address: {{ login.email }}</p>
     <div class="photo-upload">
       <h3>
@@ -25,7 +26,6 @@ import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import { useUserStore } from '../stores/user'
 import PhotoUpload from '../components/PhotoUpload.vue'
-
 
 const user = useUserStore()
 const { login } = user

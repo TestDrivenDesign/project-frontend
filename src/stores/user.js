@@ -3,9 +3,10 @@ import { defineStore } from 'pinia';
 
 export const useUserStore = defineStore('user', () => {
   const login = ref({
-    firstName: 'Greg',
-    lastName: 'Doe',
-    email: 'gregdoe@gmail.com'
+    user_id: 1,
+    first_name: 'Greg',
+    last_name: 'M',
+    email: 'gm@gmail.com'
   });
   const isUserLoggedIn = ref(false);
 
