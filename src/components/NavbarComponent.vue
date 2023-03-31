@@ -4,7 +4,9 @@
       <RouterLink to="/">Home / Logo ?</RouterLink>
     </div>
     <div id="mainListDiv" class="main_list">
-      <RouterLink to="/skinformation">Skinformation</RouterLink>
+      <RouterLink to="/skinformation"
+        ><i class="fa-sharp fa-regular fa-circle-info"></i>Skinformation</RouterLink
+      >
       <RouterLink to="/help">Help & Support</RouterLink>
       <RouterLink to="/support">Support The Fight</RouterLink>
       <div v-if="user.isUserLoggedIn" class="user">
@@ -45,6 +47,7 @@ const handleLogOut = () => {
   line-height: 50px;
   font-size: 1.4rem;
   text-align: center;
+  border-bottom: 2px solid #eee;
 }
 
 .navbar a {
@@ -59,11 +62,14 @@ const handleLogOut = () => {
 
 .navbar div.logo a {
   text-decoration: none;
-  color: #000;
+  padding: 10px;
+  font-weight: bold;
+  color: #eee;
 }
 
 .navbar div.logo a:hover {
-  color: #00e676;
+  background-color: rgba(44, 116, 179, 0.3);
+  /* border-bottom: 3px solid #2c74b3; */
 }
 
 .navbar div.main_list {
@@ -74,14 +80,16 @@ const handleLogOut = () => {
 
 .navbar div.main_list a {
   text-decoration: none;
-  color: #000;
+  font-weight: bold;
+  color: #eee;
   padding: 10px;
 }
 .navbar div.main_list div.user {
   display: inline-block;
 }
 .navbar div.main_list a:hover {
-  color: #00e676;
+  background-color: rgba(44, 116, 179, 0.3);
+  /* border-bottom: 3px solid #2c74b3; */
 }
 
 /* CSS */

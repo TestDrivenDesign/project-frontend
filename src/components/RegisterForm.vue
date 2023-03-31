@@ -97,9 +97,9 @@ const generateId = () => {
   return Math.random() * 1000
 }
 
-// const assigUserId = () => {
-//   formData.value.user_id = generateId()
-// }
+const assigUserId = () => {
+  formData.value.user_id = generateId()
+}
 
 const rules = computed(() => {
   return {
@@ -138,7 +138,7 @@ const submitRegisterForm = async () => {
     const userRegistered = isUserRegistered()
 
     if (!userRegistered) {
-      // assigUserId()
+      assigUserId()
       postNewUser(formData.value)
       addNewUser(formData.value)
       updateMsg('success', 'Registration successfull')
