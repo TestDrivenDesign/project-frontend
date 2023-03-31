@@ -2,15 +2,15 @@
   <form class="form" @submit.prevent="submitRegisterForm">
     <div class="register-field">
       <label for="first-name">First Name: </label>
-      <input id="first-name" name="first-name" type="text" v-model="formData.firstName" />
-      <small class="error" v-for="error in v$.firstName.$errors" :key="error.$uid">
+      <input id="first-name" name="first-name" type="text" v-model="formData.first_name" />
+      <small class="error" v-for="error in v$.first_name.$errors" :key="error.$uid">
         {{ error.$message }}
       </small>
     </div>
     <div class="register-field">
       <label for="last-name">Last Name: </label>
-      <input id="last-name" name="last-name" type="text" v-model="formData.lastName" />
-      <small class="error" v-for="error in v$.lastName.$errors" :key="error.$uid">
+      <input id="last-name" name="last-name" type="text" v-model="formData.last_name" />
+      <small class="error" v-for="error in v$.last_name.$errors" :key="error.$uid">
         {{ error.$message }}
       </small>
     </div>
@@ -53,6 +53,7 @@ import { required, email, minLength, sameAs, helpers } from '@vuelidate/validato
 import { useRegUsersStore } from '../stores/registeredUsers'
 import { useUserStore } from '../stores/user'
 import router from '../router/index'
+import { postNewUser } from '../utils/api'
 
 const usersRegister = useRegUsersStore()
 const { addNewUser, registeredUsers } = usersRegister
@@ -63,8 +64,9 @@ const { logUserIn } = user
 const passwordRegx = helpers.regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/) // Minimum eight characters, at least one uppercase letter, one lowercase letter and one number
 
 const formData = ref({
-  firstName: '',
-  lastName: '',
+  user_id: '',
+  first_name: '',
+  last_name: '',
   email: '',
   password: '',
   passwordConfirm: ''
@@ -79,7 +81,6 @@ const isUserRegistered = () => {
 
   return userExist
 }
-
 const redirectPage = () => {
   router.push({ path: '/profile' })
 }
@@ -92,13 +93,21 @@ const updateMsg = (result, message) => {
   }
 }
 
+const generateId = () => {
+  return Math.random() * 1000
+}
+
+const assigUserId = () => {
+  formData.value.user_id = generateId()
+}
+
 const rules = computed(() => {
   return {
-    firstName: {
+    first_name: {
       required: helpers.withMessage('First Name is required field', required),
       minLength: helpers.withMessage('First Name must be at least 3 characters long', minLength(3))
     },
-    lastName: {
+    last_name: {
       required: helpers.withMessage('Last Name is reuired field', required),
       minLength: helpers.withMessage('Last Name must be at least 3 characters long', minLength(3))
     },
@@ -129,13 +138,17 @@ const submitRegisterForm = async () => {
     const userRegistered = isUserRegistered()
 
     if (!userRegistered) {
+      assigUserId()
+      postNewUser(formData.value)
       addNewUser(formData.value)
       updateMsg('success', 'Registration successfull')
       const loginDetails = {
-        firstName: formData.value.firstName,
-        lastName: formData.value.lastName,
+        user_id: formData.value.user_id,
+        first_name: formData.value.first_name,
+        last_name: formData.value.last_name,
         email: formData.value.email
       }
+      console.log(loginDetails)
       logUserIn(loginDetails)
       redirectPage()
       // formData.value.firstName = ''
