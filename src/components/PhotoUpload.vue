@@ -2,34 +2,41 @@
   <div class="modal">
     <div class="modal-content">
       <h3>Upload your skin photo for assesment</h3>
-      <div class="inputs">
-        <div class="input-field">
-          <label for="dob">Date Of Birth</label>
-          <input id="dob" type="date" v-model="date_of_birth" />
+      <form @submit.prevent="sendPhoto($emit)">
+        <div class="inputs">
+          <div class="input-field">
+            <label for="dob">Date Of Birth</label>
+            <input id="dob" type="date" v-model="date_of_birth" />
+          </div>
+          <div class="input-field">
+            <label for="upload">Add Photo: </label>
+            <input id="upload" type="file" @change="uploadFile" accept="image/*" />
+          </div>
         </div>
-        <div class="input-field">
-          <label for="upload">Add Photo: </label>
-          <input id="upload" type="file" @change="uploadFile" accept="image/*" />
+        <div class="info-panel">
+          <p>
+            Your date of birth: <span>{{ date_of_birth }}</span>
+          </p>
+          <p>
+            chosen file: <span>{{ fileName }}</span>
+          </p>
         </div>
-      </div>
-      <div class="info-panel">
-        <p>
-          Your date of birth: <span>{{ date_of_birth }}</span>
-        </p>
-        <p>
-          chosen file: <span>{{ fileName }}</span>
-        </p>
-      </div>
-      <div class="buttons-container">
-        <button @click="uploadPhoto($emit)" class="confirm">Send Photo</button>
-        <button @click="cancelPhotoUpload($emit)" class="cancel">Cancel</button>
-      </div>
+        <div class="buttons-container">
+          <button type="submit" class="confirm">Send Photo</button>
+          <button @click="cancelPhotoUpload($emit)" class="cancel">Cancel</button>
+        </div>
+      </form>
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref, computed } from 'vue'
+import { useUserStore } from '../stores/user'
+import { sendPhotoForAssesment } from '../utils/api'
+
+const user = useUserStore()
+const { login, addDateOfBirth } = user
 
 const date_of_birth = ref('')
 const file = ref(null)
@@ -40,9 +47,23 @@ const uploadFile = (event) => {
   fileName.value = event.target.files[0].name
 }
 
-const uploadPhoto = ($emit) => {
-  $emit('close')
+const sendPhoto = ($emit) => {
+  // const formData = new FormData()
+  // formData.append('user_id', login.user_id)
+  // formData.append('date_of_birth', date_of_birth.value)
+  // formData.append('file', file.value)
+  // console.log(formData)
+  // console.log(date_of_birth.value)
+  // console.log(login.user_id)
+  // console.log(file.value)
+  addDateOfBirth(date_of_birth.value)
+  sendPhotoForAssesment(login.user_id, date_of_birth.value, file.value)
+  // .then((response) => {
+  //   console.log(response)
+  // })
+
   console.log('photo succesfully uploaded')
+  $emit('close')
 }
 
 const cancelPhotoUpload = ($emit) => {
@@ -52,30 +73,6 @@ const cancelPhotoUpload = ($emit) => {
   // fileName.value = ''
   console.log('cancelled')
 }
-// const fileName = computed(() => file.value?.name)
-// const fileExtension = computed(() => fileName.value?.substr(fileName.value?.lastIndexOf('.') + 1))
-// const fileMimeType = computed(() => file.value?.type)
-
-// const submitFile = async () => {
-//   const reader = new FileReader()
-//   reader.readAsDataURL(file.value)
-//   reader.onload = async () => {
-//     const encodedFile = reader.result.split(',')[1]
-//     const data = {
-//       file: encodedFile,
-//       fileName: fileName.value,
-//       fileExtension: fileExtension.value,
-//       fileMimeType: fileMimeType.value
-//     }
-//     try {
-//       const endpoint = 'https://example.com/upload'
-//       const response = await axios.post(endpoint, data)
-//       console.log(response.data)
-//     } catch (error) {
-//       console.error(error)
-//     }
-//   }
-// }
 </script>
 
 <style scoped>

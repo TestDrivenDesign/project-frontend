@@ -64,7 +64,7 @@ const { logUserIn } = user
 const passwordRegx = helpers.regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/) // Minimum eight characters, at least one uppercase letter, one lowercase letter and one number
 
 const formData = ref({
-  user_id: '',
+  // user_id: '',
   first_name: '',
   last_name: '',
   email: '',
@@ -97,9 +97,9 @@ const generateId = () => {
   return Math.random() * 1000
 }
 
-const assigUserId = () => {
-  formData.value.user_id = generateId()
-}
+// const assigUserId = () => {
+//   formData.value.user_id = generateId()
+// }
 
 const rules = computed(() => {
   return {
@@ -138,15 +138,16 @@ const submitRegisterForm = async () => {
     const userRegistered = isUserRegistered()
 
     if (!userRegistered) {
-      assigUserId()
+      // assigUserId()
       postNewUser(formData.value)
       addNewUser(formData.value)
       updateMsg('success', 'Registration successfull')
       const loginDetails = {
-        user_id: formData.value.user_id,
+        // user_id: formData.value.user_id,
         first_name: formData.value.first_name,
         last_name: formData.value.last_name,
-        email: formData.value.email
+        email: formData.value.email,
+        date_of_birth: ''
       }
       console.log(loginDetails)
       logUserIn(loginDetails)
