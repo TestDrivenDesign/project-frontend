@@ -10,7 +10,11 @@
         Please use button below to upload photo of your skin, if you would like to compare it with
         our database:
       </h3>
-      <button @click="modalActive = true">Submit photo for assesment</button>
+      <button @click="uploadModalActive = true">Submit photo for assesment</button>
+    </div>
+    <div class="show-assesment">
+      <h3>Check your assesment based on photo provided:</h3>
+      <button @click="assesmentModalActive = true">Check assesment</button>
     </div>
     <div class="take-photo-container">
       <RouterLink class="take-photo-button" to="/takephoto"
@@ -18,7 +22,8 @@
       >
     </div>
   </div>
-  <PhotoUpload v-if="modalActive" @close="modalActive = false" />
+  <PhotoUpload v-if="uploadModalActive" @close="uploadModalActive = false" />
+  <AssesmentComponent v-if="assesmentModalActive" @close="assesmentModalActive = false" />
 </template>
 
 <script setup>
@@ -26,11 +31,13 @@ import { ref } from 'vue'
 import { RouterLink } from 'vue-router'
 import { useUserStore } from '../stores/user'
 import PhotoUpload from '../components/PhotoUpload.vue'
+import AssesmentComponent from '../components/AssessmentComponent.vue'
 
 const user = useUserStore()
 const { login } = user
 
-const modalActive = ref(false)
+const uploadModalActive = ref(false)
+const assesmentModalActive = ref(false)
 </script>
 
 <style scoped>

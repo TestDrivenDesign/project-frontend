@@ -6,9 +6,10 @@ export const useUserStore = defineStore('user', () => {
     user_id: 1,
     first_name: 'Greg',
     last_name: 'M',
-    email: 'gm@gmail.com'
+    email: 'gm@gmail.com',
+    date_of_birth: ''
   });
-  const isUserLoggedIn = ref(false);
+  const isUserLoggedIn = ref(true);
 
   // const pageRedirect = computed((isUserLoggedIn) => {
   //   if (isUserLoggedIn) {
@@ -30,7 +31,11 @@ export const useUserStore = defineStore('user', () => {
     isUserLoggedIn.value = false;
   }
 
-  return { login, isUserLoggedIn, logUserIn, logUserOut };
+  function addDateOfBirth(newDate) {
+    login.value.date_of_birth = newDate;
+  }
+
+  return { login, isUserLoggedIn, logUserIn, logUserOut, addDateOfBirth };
 });
 
     // const doubleCount = computed((isUserLoggedIn) => {
