@@ -1,19 +1,19 @@
 <template>
   <div class="get-support">
     <h1>Useful links for</h1>
-    <ul v-for="skinhelp in skinCancerCharitiesWebsites" :key="skinhelp.name">
+    <ul v-for="skinhelp in skinCancerCharitiesWebsites" :key="skinhelp.name" class="skinmap">
     <SkinCancerSupportCard :skinhelp="skinhelp"/>
     </ul>
   </div>
   <h1>Other cancer charities</h1>
   <div>
- <ul v-for="help in cancerCharitiesWebsites" :key="help.name">
+ <ul v-for="help in cancerCharitiesWebsites" :key="help.name" class="helpmap">
       <AltCancerSupportCard :help="help" />
     </ul>
   </div>
   <h2>Useful info websites</h2>
   <div>
-  <ul v-for="infowebsite in cancerInfoWebsites" :key="infowebsite.name">
+  <ul v-for="infowebsite in cancerInfoWebsites" :key="infowebsite.name" class="infomap">
       <CancerInfoWebsitesCard :infowebsite="infowebsite" />
       </ul>
     </div>
@@ -57,4 +57,16 @@ const cancerInfoWebsites = [{
 }]
 </script>
 
-<style scoped></style>
+<style scoped>
+.skinmap{
+  list-style-type: none
+}
+
+.helpmap{
+  list-style-type: none
+}
+
+.infomap{
+  list-style-type: none
+}
+</style>
