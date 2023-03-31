@@ -2,7 +2,7 @@
     <li class="skinhelp-card">
         <h2><a :href="skinhelp.link" target="_blank">{{ skinhelp.name }}</a></h2>
         <p>{{ skinhelp.tag }}</p>
-        <img :src="skinhelp.img" :alt="skinhelp.name"/>
+        <img :src="skinhelp.img" :alt="skinhelp.name" class="skinhelpimages"/>
         
     </li>
     
@@ -18,3 +18,9 @@ export default
 
 
 </script>
+
+<style scoped>
+.skinhelpimages{
+    max-height: 100px;
+}
+</style>

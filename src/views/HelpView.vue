@@ -5,15 +5,18 @@
     <SkinCancerSupportCard :skinhelp="skinhelp"/>
     </ul>
   </div>
-  <h2>Other cancer charities</h2>
+  <h1>Other cancer charities</h1>
   <div>
- <ul v-for="help in cancerInfoWebsites" :key="help.name">
+ <ul v-for="help in cancerCharitiesWebsites" :key="help.name">
       <AltCancerSupportCard :help="help" />
     </ul>
   </div>
   <h2>Useful info websites</h2>
-  <ul v-for="help in cancerInfoWebsites" :key="help.name">
-      <AltCancerSupportCard :help="help" />
+  <div>
+  <ul v-for="infowebsite in cancerInfoWebsites" :key="infowebsite.name">
+      <CancerInfoWebsitesCard :infowebsite="infowebsite" />
+      </ul>
+    </div>
 </template>
 
 <script setup>
@@ -31,7 +34,7 @@ const skinCancerCharitiesWebsites = [
 {name: 'Melanoma Fund', link: 'https://www.melanoma-fund.co.uk/', tag: 'We raise awareness of melanoma and other forms of skin cancer.', img: 'https://www.melanoma-fund.co.uk/wp-content/uploads/2020/10/melanoma-fund-logo.svg'}
 ]
 
-const cancerInfoWebsites = [{
+const cancerCharitiesWebsites = [{
   name: 'MacMillan', link: 'https://www.macmillan.org.uk/', tag: 'Because cancer can affect your life in so many ways, we do whatever it takes to give people the support they need', img: 'https://d1yjjnpx0p53s8.cloudfront.net/styles/logo-thumbnail/s3/0019/1152/brand.gif?itok=B0mVWgmV' 
 },
   { name: 'Anthony Nolan', link: 'https://www.anthonynolan.org/', tag: 'Saving the ives of people with blood cancer', img: 'https://cached.imagescaler.hbpl.co.uk/resize/scaleWidth/952/cached.offlinehbpl.hbpl.co.uk/news/NST/EB3D9AB8-C3B5-0E3A-CED854EA10409CDB.jpg' },
@@ -40,6 +43,18 @@ const cancerInfoWebsites = [{
   { name: 'Young Lives VS Cancer', link: 'https://www.younglivesvscancer.org.uk/', tag: 'We\'ll face it all, together. Help children and young people with cancer find the strength to face everything cancer throws at them.', img:'http://images.justgiving.com/image/39065627-760d-4a63-abe3-de71475aefe0.png?template=size200x200' },
   { name: 'Ellen Macarthur Cancer Trust', link: 'https://www.ellenmacarthurcancertrust.org/', tag: 'Believe in a brighter future. For many young people, picking up from where they left off before cancer is not possible. When treatment ends our work begins. We inspire young people aged 8-24 to believe in a brighter future through sailing and outdoor adventure.', img:'https://upload.wikimedia.org/wikipedia/en/8/8d/Ellen_MacArthur_Foundation_Logo_%28blue%29.jpg' }
 ]
+
+const cancerInfoWebsites = [{
+  name : 'NHS', link : 'https://www.nhs.uk/conditions/cancer/'
+},{
+  name : 'World Health Organization', link : 'https://www.who.int/health-topics/cancer#tab=tab_1'
+},{
+  name : 'Mayo Clinic', link : 'https://www.mayoclinic.org/diseases-conditions/cancer/symptoms-causes/syc-20370588'
+},{
+  name : 'The National Institute for Health and Care Excellence', link : 'https://www.nice.org.uk/guidance/conditions-and-diseases/cancer'
+},{
+  name : 'WebMD', link : 'https://www.webmd.com/cancer/default.htm'
+}]
 </script>
 
 <style scoped></style>
