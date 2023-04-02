@@ -23,6 +23,7 @@
         >
       </div> -->
     </div>
+    <font-awesome-icon class="user-icon" icon="fa-solid fa-user" />
   </div>
   <PhotoUpload v-if="uploadModalActive" @close="uploadModalActive = false" />
   <AssesmentComponent v-if="assesmentModalActive" @close="assesmentModalActive = false" />
@@ -43,10 +44,9 @@ const assesmentModalActive = ref(false)
 </script>
 
 <style scoped>
-/* .user-panel {
-  min-height: 100vh;
-  background-color: #ffb319;
-} */
+.user-panel {
+  position: relative;
+}
 .user-profile {
   width: 90%;
   height: 80vh;
@@ -116,6 +116,17 @@ button:active {
 
 .take-photo-container {
   display: none;
+}
+
+.user-icon {
+  position: absolute;
+  top: 50px;
+  right: 100px;
+  width: 200px;
+  height: 200px;
+  padding: 20px;
+  border: 2px solid #205295;
+  border-radius: 10px;
 }
 
 @media (max-width: 480px) {
