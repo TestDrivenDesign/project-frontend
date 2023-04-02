@@ -1,6 +1,17 @@
 <template>
   <div class="skinformation">
-    <h1>This is skinformation</h1>
+    <h2>What is skin cancer and what it does?</h2>
+    <p>
+      Skin cancer is one of the most prevalent forms of cancer and can appear anywhere on the skin.
+      Most common are non-melanoma skin cancers, like Basal Cell Carcinoma and Squamous Cell
+      Carcinoma.The first signs of non-melanoma cancers are often patches or lesions on the skin
+      that show unnatural growth. <br />
+      <br />
+      Cases of skin cancer have been on the rise for decades now. When detected early, most skin
+      cancer types can be treated. That's why it is important to check your skin regularly for any
+      irregularities and see a doctor whenever you are concerned about something.
+    </p>
+    <h2>Types of skin cancer</h2>
     <ul v-for="condition in skinConditionExamples" :key="condition.name">
       <SkinConditionCard :condition="condition" />
     </ul>
@@ -23,15 +34,7 @@ const skinConditionExamples = [
     name: 'basal cell carcinoma',
     img1: 'src/img/basal_cell_carcinoma1.jpg',
     img2: 'src/img/basal_cell_carcinoma2.jpg',
-    info: `Basal cell carcinoma (BCC) is the most common type of skin cancer, which develops in the top layer of the skin (epidermis). They usually grow slowly, and they rarely spread to other parts of the body.
-
-Basal cell carcinomas can occur anywhere on the body but are most common in areas that are exposed to the sun such as your face, head, neck, and ears.
-
-If left untreated, Basal cell carcinomas will continue to grow and can eventually cause an ulcer; hence they can have the name 'rodent ulcer'. They can start to destroy surrounding skin if they are left to continue to enlarge over time.
-
-Most Basal cell carcinomas are painless, although sometimes they can be itchy or bleed.
-
-`,
+    info: `Basal cell carcinoma (BCC) is the most common type of skin cancer, which develops in the top layer of the skin (epidermis). They usually grow slowly, and they rarely spread to other parts of the body.Basal cell carcinomas can occur anywhere on the body but are most common in areas that are exposed to the sun such as your face, head, neck, and ears.If left untreated, Basal cell carcinomas will continue to grow and can eventually cause an ulcer; hence they can have the name 'rodent ulcer'. They can start to destroy surrounding skin if they are left to continue to enlarge over time.Most Basal cell carcinomas are painless, although sometimes they can be itchy or bleed.`,
     link: 'https://www.nbt.nhs.uk/our-services/a-z-services/skin-cancer-services/skin-cancer-patient-information/basal-cell-carcinoma'
   },
   {
@@ -52,11 +55,7 @@ Most Basal cell carcinomas are painless, although sometimes they can be itchy or
     name: 'melanoma',
     img1: 'src/img/melanoma1.jpg',
     img2: 'src/img/melanoma2.jpg',
-    info: `Melanoma is a type of skin cancer that can spread to other organs in the body.
-
-The most common sign of melanoma is the appearance of a new mole or a change in an existing mole. This can happen anywhere on the body, but the back, legs, arms and face are most commonly affected.
-
-In most cases, melanomas have an irregular shape and more than 1 colour. They may also be larger than normal moles and can sometimes be itchy or bleed.`,
+    info: `Melanoma is a type of skin cancer that can spread to other organs in the body. The most common sign of melanoma is the appearance of a new mole or a change in an existing mole. This can happen anywhere on the body, but the back, legs, arms and face are most commonly affected. In most cases, melanomas have an irregular shape and more than 1 colour. They may also be larger than normal moles and can sometimes be itchy or bleed.`,
     link: 'https://www.nhs.uk/conditions/melanoma-skin-cancer/'
   },
   {
@@ -65,9 +64,7 @@ In most cases, melanomas have an irregular shape and more than 1 colour. They ma
     img2: 'src/img/nevus2.jpg',
     info: `Nevus (plural: nevi) is the medical term for a mole. Nevi are very common. Most peopleTrusted Source have between 10 and 40. Common nevi are harmless collections of colored cells. They typically appear as small brown, tan, or pink spots.
 
-You can be born with moles or develop them later. Moles that you’re born with are known as congenital moles. However, most moles develop during childhood and adolescence. This is known as an acquired nevus. Moles can also develop later in life as a result of sun exposure.
-
-There are many types of nevi. Some of them are harmless and others more serious. Read on to learn about the different types and how to know whether you should get one checked out by your doctor.`,
+You can be born with moles or develop them later. Moles that you’re born with are known as congenital moles. However, most moles develop during childhood and adolescence. This is known as an acquired nevus. Moles can also develop later in life as a result of sun exposure. There are many types of nevi. Some of them are harmless and others more serious. Read on to learn about the different types and how to know whether you should get one checked out by your doctor.`,
     link: 'https://www.nhs.uk/conditions/moles/'
   },
   {
@@ -81,7 +78,28 @@ There are many types of nevi. Some of them are harmless and others more serious.
 </script>
 
 <style scoped>
+.skinformation {
+  /* background-color: rgba(0, 0, 0, 0.2); */
+  background-color: #f9f9f9;
+  margin: 10px auto;
+  padding: 40px;
+  color: #205295;
+  /* border: 2px solid #205295; */
+  /* border-radius: 15px; */
+  width: 90%;
+}
+h2 {
+  font-size: 2rem;
+}
+
+p {
+  font-size: 1.2rem;
+  text-align: justify;
+}
+
 ul {
   list-style: none;
+  padding-left: 0;
+  margin: 0;
 }
 </style>

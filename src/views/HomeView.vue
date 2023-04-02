@@ -23,9 +23,9 @@
 
 h2 {
   text-align: right;
-  margin: 20px 20px 10px 20px;
+  margin: 20px 20px 0 20px;
   width: 50%;
-  font-size: 4rem;
+  font-size: 3rem;
   text-transform: uppercase;
   /* background-image: radial-gradient(circle, #e89c21, #f29965);
   color: transparent;
@@ -35,7 +35,7 @@ h2 {
 }
 
 h3 {
-  font-size: 3.2rem;
+  font-size: 2.5rem;
   font-weight: bold;
   text-transform: uppercase;
   color: #205295;

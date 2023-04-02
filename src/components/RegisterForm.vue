@@ -215,8 +215,8 @@ const submitRegisterForm = async () => {
   font-size: 16px;
   padding: 10px;
   color: #fff;
-  background-color: #3498db;
-  border: 2px solid #3498db;
+  background-color: #ffb319;
+  border: 2px solid #ffb319;
   border-radius: 4px;
 }
 </style>

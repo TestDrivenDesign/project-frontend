@@ -2,7 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import HomeView from '../views/HomeView.vue';
 import SkinformationView from '../views/SkinformationView.vue';
 import HelpView from '../views/HelpView.vue';
-import GiveSupportView from '../views/GiveSupportView.vue';
+import AboutView from '../views/AboutView.vue';
 import LoginView from '../views/LoginView.vue';
 import TakePhotoView from '../views/TakePhotoView.vue';
 import RegisterView from '../views/RegisterView.vue';
@@ -27,9 +27,9 @@ const router = createRouter({
       component: HelpView
     },
     {
-      path: '/support',
-      name: 'giveSupport',
-      component: GiveSupportView
+      path: '/about',
+      name: 'about',
+      component: AboutView
     },
     {
       path: '/login',

@@ -9,7 +9,7 @@ export const useUserStore = defineStore('user', () => {
     email: 'gm@gmail.com',
     date_of_birth: ''
   });
-  const isUserLoggedIn = ref(false);
+  const isUserLoggedIn = ref(true);
 
   // const pageRedirect = computed((isUserLoggedIn) => {
   //   if (isUserLoggedIn) {
