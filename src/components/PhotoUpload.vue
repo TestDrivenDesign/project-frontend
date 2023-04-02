@@ -4,7 +4,8 @@
       <h3>Upload your skin photo for assesment</h3>
       <form @submit.prevent="sendPhoto($emit)">
         <div class="inputs">
-          <div class="input-field">
+          <div class="input-field calendar">
+            <font-awesome-icon class="calendar-icon" icon="fa-solid fa-calendar-days" size="lg" />
             <Datepicker
               :full-month-name="true"
               v-model="date_of_birth"
@@ -90,7 +91,6 @@ div.modal {
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: rgb(0, 0, 0);
   background-color: rgba(0, 0, 0, 0.4);
 }
 
@@ -114,30 +114,18 @@ h3 {
   margin-bottom: 15px;
 }
 
-div.inputs {
-  /* display: flex; */
+.calendar {
+  display: flex;
+}
+
+.calendar-icon {
+  margin-right: 10px;
 }
 
 div.input-field {
   margin: 20px;
 }
 
-/* .date {
-  border-radius: 5px;
-  font-size: 50px;
-} */
-
-/* input[type='date'] {
-  border-radius: 10px;
-} */
-
-/* .info-panel {
-  display: flex;
-  height: 80px;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-} */
 .info-panel p span {
   font-weight: bold;
 }
@@ -146,18 +134,6 @@ div.buttons-container {
   justify-content: center;
   width: 100%;
 }
-
-/* .custom-file-upload {
-  border: 1px solid #ccc;
-  display: inline-block;
-  align-self: center;
-  padding: 6px 12px;
-  cursor: pointer;
-} */
-
-/* input[type='file'] {
-  display: none;
-} */
 
 button {
   margin-right: 20px;

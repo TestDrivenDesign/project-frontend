@@ -142,8 +142,8 @@ p.error-msg {
   font-size: 16px;
   padding: 10px;
   color: #fff;
-  background-color: #ffb319;
-  border: 2px solid #ffb319;
+  background-color: #205295;
+  border: 2px solid #205295;
   border-radius: 4px;
 }
 
