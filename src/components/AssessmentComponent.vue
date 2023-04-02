@@ -1,11 +1,9 @@
 <template>
   <div class="modal">
     <div class="modal-content">
-      <h3>This is your assesment</h3>
+      <h3>This is your assesment {{ login.first_name }} {{ login.last_name }}</h3>
       <div class="user-info">
-        <p>First Name: {{ login.first_name }}</p>
-        <p>Last Name: {{ login.last_name }}</p>
-        <p>Date OF Birth: {{ login.date_of_birth ? login.date_of_birth : '-' }}</p>
+        <p>Your age: {{ age ? age : '-' }}</p>
       </div>
       <div class="assesment">
         <div class="img-container">
@@ -23,6 +21,7 @@ import { useUserStore } from '../stores/user'
 const user = useUserStore()
 const { login } = user
 
+const age = new Date().toLocaleDateString - login.date_of_birth
 const assesment = () => {
   return Math.floor(Math.random() * 6)
 }
@@ -46,40 +45,45 @@ div.modal {
   position: relative;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: #fefefe;
+  /* align-items: center; */
+  /* justify-content: center; */
+  background-color: #f9f9f9;
   margin: 5% auto;
-  padding: 20px;
-  border: 1px solid #888;
+  padding: 30px;
+  border: 2px solid #205295;
   border-radius: 10px;
   width: 80%;
-  height: 80%;
+  height: 60%;
 }
 
 h3 {
-  text-align: center;
+  /* text-align: center; */
   font-size: 1.8rem;
   margin-bottom: 15px;
+}
+p {
+  font-size: 1.4rem;
 }
 
 .assesment {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  margin-top: 40px;
 }
 .assesment p {
-  font-size: 1.6rem;
-  margin-left: 10px;
+  font-size: 1.4rem;
+  margin-left: 20px;
 }
 .img-container {
-  width: 500px;
+  width: 400px;
   object-fit: contain;
 }
 
 img {
   width: 100%;
   height: auto;
+  box-shadow: rgba(0, 0, 0, 0.25) 0px 14px 28px, rgba(0, 0, 0, 0.22) 0px 10px 10px;
+  border-radius: 5px;
 }
 
 button {

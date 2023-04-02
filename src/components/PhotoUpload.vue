@@ -5,17 +5,21 @@
       <form @submit.prevent="sendPhoto($emit)">
         <div class="inputs">
           <div class="input-field">
-            <label for="dob">Date Of Birth</label>
-            <input id="dob" type="date" v-model="date_of_birth" />
+            <Datepicker
+              :full-month-name="true"
+              v-model="date_of_birth"
+              placeholder="Add date of birth"
+              class="date"
+            />
           </div>
           <div class="input-field">
-            <label for="upload">Add Photo: </label>
-            <input id="upload" type="file" @change="uploadFile" accept="image/*" />
+            <input id="upload" type="file" @change="uploadFile" accept="image/*" class="file" />
           </div>
         </div>
         <div class="info-panel">
           <p>
-            Your date of birth: <span>{{ date_of_birth }}</span>
+            Your date of birth:
+            <span>{{ date_of_birth ? date_of_birth.toLocaleDateString() : '-' }}</span>
           </p>
           <p>
             chosen file: <span>{{ fileName }}</span>
@@ -31,14 +35,15 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref } from 'vue'
 import { useUserStore } from '../stores/user'
 import { sendPhotoForAssesment } from '../utils/api'
+import Datepicker from 'vue3-datepicker'
 
 const user = useUserStore()
 const { login, addDateOfBirth } = user
 
-const date_of_birth = ref('')
+const date_of_birth = ref(null)
 const file = ref(null)
 const fileName = ref('')
 
@@ -100,7 +105,7 @@ div.modal {
   border: 1px solid #888;
   border-radius: 10px;
   width: 50%;
-  height: 30%;
+  height: 35%;
 }
 
 h3 {
@@ -110,23 +115,29 @@ h3 {
 }
 
 div.inputs {
-  display: flex;
+  /* display: flex; */
 }
 
 div.input-field {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  margin: 15px;
+  margin: 20px;
 }
 
-/* div.input-field label {
-  align-self: center;
-}
-div.input-field input {
-  align-self: center;
+/* .date {
+  border-radius: 5px;
+  font-size: 50px;
 } */
 
+/* input[type='date'] {
+  border-radius: 10px;
+} */
+
+/* .info-panel {
+  display: flex;
+  height: 80px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+} */
 .info-panel p span {
   font-weight: bold;
 }
@@ -136,11 +147,49 @@ div.buttons-container {
   width: 100%;
 }
 
-button {
+/* .custom-file-upload {
+  border: 1px solid #ccc;
+  display: inline-block;
+  align-self: center;
+  padding: 6px 12px;
   cursor: pointer;
-  font-size: 1.2rem;
-  margin: 10px;
-  padding: 5px;
-  width: 30%;
+} */
+
+/* input[type='file'] {
+  display: none;
+} */
+
+button {
+  margin-right: 20px;
+  width: 200px;
+  background: #205295;
+  border: 1px solid #205295;
+  border-radius: 6px;
+  box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+  color: #fff;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 16px;
+  font-weight: 800;
+  line-height: 16px;
+  min-height: 30px;
+  outline: 0;
+  padding: 8px 12px;
+  text-align: center;
+  text-rendering: geometricprecision;
+  text-transform: none;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  vertical-align: middle;
+}
+
+button:hover,
+button:active {
+  background-color: initial;
+  background-position: 0 0;
+  /* color: #205295; */
+  background: #ffb319;
+  border: 1px solid #ffb319;
 }
 </style>
