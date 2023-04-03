@@ -11,7 +11,9 @@
         </div>
         <p>Your result is: {{ assesment() }}</p>
       </div>
-      <button @click="$emit('close')" class="cancel">x</button>
+      <button @click="$emit('close')" class="cancel">
+        <font-awesome-icon class="x-icon" icon="fa-solid fa-circle-xmark" />
+      </button>
     </div>
   </div>
 </template>
@@ -88,13 +90,24 @@ img {
 
 button {
   position: absolute;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   top: 1%;
   right: 1%;
   cursor: pointer;
   background-color: transparent;
   font-size: 1.2rem;
   margin: 10px;
-  /* padding: 10px; */
-  border-radius: 50%;
+  height: 35px;
+  width: 35px;
+  border: none;
+}
+
+.x-icon {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  color: #205295;
 }
 </style>

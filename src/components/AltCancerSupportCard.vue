@@ -1,7 +1,7 @@
 <template>
   <li class="help-card">
     <h2 @click="handleExpandDescription" class="accordion">
-      {{ expandIcon }} {{ props.help.name }}
+      <font-awesome-icon v-bind:icon="expandIcon" /> {{ props.help.name }}
     </h2>
     <Collapse :when="isExpanded" class="info">
       <img :src="props.help.img" :alt="props.help.name" />
@@ -18,14 +18,14 @@ import { ref } from 'vue'
 import { Collapse } from 'vue-collapsed'
 
 const isExpanded = ref(false)
-const expandIcon = ref('+')
+const expandIcon = ref('fa-solid fa-chevron-down')
 
 const changeExpandIcon = () => {
   if (isExpanded.value) {
-    expandIcon.value = '-'
+    expandIcon.value = 'fa-chevron-up'
     return expandIcon
   } else {
-    expandIcon.value = '+'
+    expandIcon.value = 'fa-chevron-down'
     return expandIcon
   }
 }

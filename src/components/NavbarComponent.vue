@@ -17,8 +17,16 @@
       </div>
       <RouterLink @click="toggleMenuOpen" v-else to="/login">Login / Register</RouterLink>
     </div>
-    <button @click="toggleMenuOpen($emit)" class="menu-burger">
-      <font-awesome-icon class="bars-icon" icon="fa-solid fa-bars" />
+    <button
+      v-bind:class="{ 'menu-open': isMobileMenuOpen }"
+      @click="toggleMenuOpen($emit)"
+      class="menu-burger"
+    >
+      <font-awesome-icon
+        v-bind:class="{ 'open-bars': isMobileMenuOpen }"
+        class="bars-icon"
+        icon="fa-solid fa-bars"
+      />
     </button>
   </nav>
 </template>
@@ -162,6 +170,14 @@ button:active {
   color: #205295;
 }
 
+.menu-open {
+  border: 1px solid #f9f9f9;
+}
+
+.open-bars {
+  color: #f9f9f9;
+}
+
 @media (max-width: 1200px) {
   .logo-img {
     width: 200px;
@@ -178,7 +194,7 @@ button:active {
   }
 }
 
-@media (max-width: 968px) {
+@media (max-width: 980px) {
   .logo-img {
     width: 150px;
     line-height: 40px;
@@ -215,7 +231,7 @@ button:active {
   }
 
   .navbar div.main_list a {
-    padding: 8px 8px 8px 40px;
+    padding: 6px 6px 6px 6px;
     text-decoration: none;
     font-size: 25px;
     color: #f9f9f9;
