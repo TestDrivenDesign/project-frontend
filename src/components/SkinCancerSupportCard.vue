@@ -1,7 +1,7 @@
 <template>
   <li class="skinhelp-card">
     <h2 @click="handleExpandDescription">
-      {{ expandIcon }}
+      <font-awesome-icon v-bind:icon="expandIcon" />
       {{ props.skinHelp.name }}
     </h2>
     <Collapse :when="isExpanded" class="info">
@@ -19,14 +19,14 @@ import { ref } from 'vue'
 import { Collapse } from 'vue-collapsed'
 
 const isExpanded = ref(false)
-const expandIcon = ref('+')
+const expandIcon = ref('fa-solid fa-chevron-down')
 
 const changeExpandIcon = () => {
   if (isExpanded.value) {
-    expandIcon.value = '-'
+    expandIcon.value = 'fa-chevron-up'
     return expandIcon
   } else {
-    expandIcon.value = '+'
+    expandIcon.value = 'fa-chevron-down'
     return expandIcon
   }
 }

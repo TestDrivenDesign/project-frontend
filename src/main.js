@@ -1,7 +1,7 @@
 import { createApp } from 'vue';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faCalendarDays, faUser, faBars } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarDays, faUser, faBars, faCircleXmark, faChevronUp, faChevronDown } from '@fortawesome/free-solid-svg-icons';
 // import { faMen} from '@fortawesome/free-regular-svg-icons'
 // import { fa } from '@fortawesome/free-brands-svg-icons';
 import { createPinia } from 'pinia';
@@ -11,7 +11,7 @@ import router from './router';
 
 import './assets/main.css';
 
-library.add(faCalendarDays, faUser, faBars);
+library.add(faCalendarDays, faUser, faBars, faCircleXmark, faChevronUp, faChevronDown);
 
 const app = createApp(App);
 

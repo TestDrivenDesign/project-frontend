@@ -45,4 +45,22 @@ h3 {
   -webkit-background-clip: text; */
   margin: 10px 20px 10px 20px;
 }
+
+@media (max-width: 980px) {
+  .home {
+    background-position-x: calc(25%);
+  }
+}
+@media (max-width: 680px) {
+  .home {
+    background-position-x: calc(30%);
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+  h3 {
+    font-size: 1.5rem;
+  }
+}
 </style>
