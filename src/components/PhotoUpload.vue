@@ -168,4 +168,55 @@ button:active {
   background: #ffb319;
   border: 1px solid #ffb319;
 }
+
+@media (max-width: 980px) {
+  .modal-content {
+    width: 60%;
+    height: 40%;
+  }
+}
+@media (max-width: 768px) {
+  .modal-content {
+    width: 80%;
+    height: 40%;
+  }
+}
+@media (max-width: 580px) {
+  .modal-content {
+    height: 35%;
+  }
+  h3 {
+    font-size: 1.4rem;
+  }
+  button {
+    margin-right: 20px;
+    width: 150px;
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 12px;
+    min-height: 20px;
+    padding: 8px 12px;
+  }
+}
+@media (max-width: 480px) {
+  div.modal {
+    width: 100vw;
+  }
+  .modal-content {
+    width: 88%;
+    height: 45%;
+  }
+  h3 {
+    font-size: 1.4rem;
+  }
+  button {
+    margin-right: 20px;
+    width: 150px;
+    font-size: 12px;
+    font-weight: 800;
+    line-height: 12px;
+    min-height: 20px;
+    padding: 8px 12px;
+  }
+}
 </style>

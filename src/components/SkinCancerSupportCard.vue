@@ -99,4 +99,28 @@ a:hover {
   flex-grow: 1;
   font-weight: bold;
 }
+
+@media (max-width: 680px) {
+  .skinhelp-card {
+    width: 80%;
+    padding-left: 10px;
+  }
+  .info img {
+    margin-right: 10px;
+  }
+}
+@media (max-width: 480px) {
+  .skinhelp-card {
+    width: 90%;
+  }
+
+  .info img {
+    margin-bottom: 10px;
+  }
+
+  p.description {
+    margin-top: 0;
+    margin-bottom: 15px;
+  }
+}
 </style>

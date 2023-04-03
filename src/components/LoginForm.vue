@@ -158,4 +158,14 @@ p.error-msg {
 .register-msg a:hover {
   text-decoration: underline;
 }
+
+@media (max-width: 480px) {
+  .form-field.password {
+    padding-bottom: 20px;
+  }
+
+  .form-field input {
+    width: 95%;
+  }
+}
 </style>

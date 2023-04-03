@@ -13,7 +13,7 @@
         </h3>
         <button @click="uploadModalActive = true">Submit photo for assesment</button>
       </div>
-      <div class="show-assesment">
+      <div class="show-assessment">
         <h3>Check your assesment based on photo provided:</h3>
         <button @click="assesmentModalActive = true">Check assesment</button>
       </div>
@@ -129,9 +129,60 @@ button:active {
   border-radius: 10px;
 }
 
+@media (max-width: 980px) {
+  .user-icon {
+    right: 60px;
+  }
+}
+@media (max-width: 780px) {
+  h2 {
+    font-size: 2rem;
+  }
+
+  p {
+    font-size: 1.1rem;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+  }
+  .user-icon {
+    right: 40px;
+    width: 120px;
+    height: 120px;
+    border-radius: 20px;
+  }
+
+  .photo-upload {
+    text-align: justify;
+    width: 90%;
+  }
+
+  .show-assessment {
+    width: 90%;
+  }
+}
 @media (max-width: 480px) {
+  .user-panel {
+    overflow: hidden;
+  }
+  .user-profile {
+    width: 100%;
+    border: none;
+  }
+  .user-icon {
+    display: none;
+  }
   .take-photo-container {
     display: block;
+  }
+
+  .photo-upload {
+    margin-right: 0;
+  }
+
+  button {
+    width: 100%;
   }
 }
 </style>

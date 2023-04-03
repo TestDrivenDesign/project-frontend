@@ -219,4 +219,14 @@ const submitRegisterForm = async () => {
   border: 2px solid #205295;
   border-radius: 4px;
 }
+
+@media (max-width: 480px) {
+  .register-field.password {
+    padding-bottom: 20px;
+  }
+
+  .register-field input {
+    width: 95%;
+  }
+}
 </style>

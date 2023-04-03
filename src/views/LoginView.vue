@@ -26,4 +26,16 @@ h2 {
   text-align: center;
   margin-bottom: 20px;
 }
+
+@media (max-width: 580px) {
+  .container {
+    width: 380px;
+  }
+}
+@media (max-width: 480px) {
+  .container {
+    width: 290px;
+    padding: 20px 30px;
+  }
+}
 </style>

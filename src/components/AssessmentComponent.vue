@@ -106,8 +106,51 @@ button {
 
 .x-icon {
   position: absolute;
-  width: 35px;
-  height: 35px;
+  width: 100%;
+  height: 100%;
   color: #205295;
+}
+
+@media (max-width: 980px) {
+  .assesment {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 10px;
+  }
+
+  .modal-content {
+    width: 90%;
+    height: 80%;
+  }
+
+  h3 {
+    margin-bottom: 10px;
+  }
+  p {
+    margin: 10px;
+  }
+}
+@media (max-width: 680px) {
+  .modal-content {
+    margin: 20% auto;
+    padding: 10px;
+    border-radius: 10px;
+    width: 80%;
+    height: 80%;
+  }
+
+  p {
+    font-size: 1.1rem;
+  }
+
+  img {
+    width: 60%;
+    margin-bottom: 10px;
+  }
+
+  button {
+    height: 25px;
+    width: 25px;
+  }
 }
 </style>
