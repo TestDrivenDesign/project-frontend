@@ -27,12 +27,13 @@ import { ref, computed } from 'vue'
 import { RouterLink } from 'vue-router'
 import useVuelidate from '@vuelidate/core'
 import { required, email, minLength, helpers } from '@vuelidate/validators'
-import { useRegUsersStore } from '../stores/registeredUsers'
+// import { useRegUsersStore } from '../stores/registeredUsers'
 import { useUserStore } from '../stores/user'
 import router from '../router/index'
+import { postUserLogin } from '../utils/api'
 
-const usersRegister = useRegUsersStore()
-const { registeredUsers } = usersRegister
+// const usersRegister = useRegUsersStore()
+// const { registeredUsers } = usersRegister
 
 const user = useUserStore()
 const { logUserIn } = user
@@ -64,16 +65,16 @@ const rules = computed(() => {
   }
 })
 
-const loginUserFind = () => {
-  const loggedUser = registeredUsers.filter((user) => {
-    return user.email === formData.value.email && user.password === formData.value.password
-  })
-  if (loggedUser.length) {
-    return loggedUser[0]
-  } else {
-    updateMsg('Email or password incorrect!')
-  }
-}
+// const loginUserFind = () => {
+//   const loggedUser = registeredUsers.filter((user) => {
+//     return user.email === formData.value.email && user.password === formData.value.password
+//   })
+//   if (loggedUser.length) {
+//     return loggedUser[0]
+//   } else {
+//     updateMsg('Email or password incorrect!')
+//   }
+// }
 
 const v$ = useVuelidate(rules, formData)
 
@@ -81,19 +82,26 @@ const submitLoginForm = async () => {
   const result = await v$.value.$validate()
 
   if (result) {
-    const loggedUser = loginUserFind()
-
-    if (loggedUser) {
-      const loginDetails = {
-        first_name: loggedUser.firstName,
-        last_name: loggedUser.lastName,
-        email: loggedUser.email
-      }
-      logUserIn(loginDetails)
-      redirectPage()
+    const user = {
+      email: formData.value.email,
+      password: formData.value.password
     }
-  } else {
-    console.log('form not submitted')
+    postUserLogin(user)
+      .then((loggedUser) => {
+        const loginDetails = {
+          user_id: loggedUser.user_id,
+          first_name: loggedUser.first_name,
+          last_name: loggedUser.last_name,
+          email: loggedUser.email,
+          date_of_birth: ''
+        }
+        redirectPage()
+        logUserIn(loginDetails)
+      })
+      .catch((err) => {
+        console.log(err)
+        updateMsg('Email or password incorrect!')
+      })
   }
 }
 </script>

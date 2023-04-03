@@ -19,7 +19,6 @@
 </template>
 
 <script setup>
-// import { ref, computed } from 'vue'
 import SkinConditionCard from '../components/SkinConditionCard.vue'
 
 const skinConditionExamples = [

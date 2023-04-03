@@ -3,14 +3,15 @@
     <div class="modal-content">
       <h3>This is your assesment {{ login.first_name }} {{ login.last_name }}</h3>
       <div class="user-info">
-        <p>Your age: {{ age ? age : '-' }}</p>
+        <p>Your DOB: {{ login.date_of_birth ? login.date_of_birth.toLocaleDateString() : '-' }}</p>
       </div>
-      <div class="assesment">
+      <div v-if="diagnosisPhotoPath" class="assessment">
         <div class="img-container">
-          <img src="../img/actinic_keratosis1.jpg" alt="assesment" />
+          <img :src="path" alt="assesment" />
         </div>
         <p>Your result is: {{ assesment() }}</p>
       </div>
+      <p v-else>No File Sent</p>
       <button @click="$emit('close')" class="cancel">
         <font-awesome-icon class="x-icon" icon="fa-solid fa-circle-xmark" />
       </button>
@@ -21,11 +22,29 @@
 <script setup>
 import { useUserStore } from '../stores/user'
 const user = useUserStore()
-const { login } = user
+const { login, diagnosisPhotoPath, assesmentValue } = user
 
-const age = new Date().toLocaleDateString - login.date_of_birth
+const path = 'src/img/assessment/' + diagnosisPhotoPath
+
+console.log(typeof assesmentValue)
 const assesment = () => {
-  return Math.floor(Math.random() * 6)
+  if (assesmentValue === '0') {
+    return 'This is description for assessment 0 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, placeat dignissimos dicta, unde ratione numquam exercitationem eos deserunt accusantium, totam quaerat. Consequuntur vitae soluta debitis optio? Voluptas quasi quo eaque.'
+  } else if (assesmentValue === '1') {
+    return 'This is description for assessment 1 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, placeat dignissimos dicta, unde ratione numquam exercitationem eos deserunt accusantium, totam quaerat. Consequuntur vitae soluta debitis optio? Voluptas quasi quo eaque.'
+  } else if (assesmentValue === '2') {
+    return 'This is description for assessment 2 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, placeat dignissimos dicta, unde ratione numquam exercitationem eos deserunt accusantium, totam quaerat. Consequuntur vitae soluta debitis optio? Voluptas quasi quo eaque.'
+  } else if (assesmentValue === '3') {
+    return 'This is description for assessment 3 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, placeat dignissimos dicta, unde ratione numquam exercitationem eos deserunt accusantium, totam quaerat. Consequuntur vitae soluta debitis optio? Voluptas quasi quo eaque.'
+  } else if (assesmentValue === '4') {
+    return 'This is description for assessment 4 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, placeat dignissimos dicta, unde ratione numquam exercitationem eos deserunt accusantium, totam quaerat. Consequuntur vitae soluta debitis optio? Voluptas quasi quo eaque.'
+  } else if (assesmentValue === '5') {
+    return 'This is description for assessment 5 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, placeat dignissimos dicta, unde ratione numquam exercitationem eos deserunt accusantium, totam quaerat. Consequuntur vitae soluta debitis optio? Voluptas quasi quo eaque.'
+  } else if (assesmentValue === '6') {
+    return 'This is description for assessment 6 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, placeat dignissimos dicta, unde ratione numquam exercitationem eos deserunt accusantium, totam quaerat. Consequuntur vitae soluta debitis optio? Voluptas quasi quo eaque.'
+  } else {
+    return 'Unable to assess condition of your skin. Try uploading photo again'
+  }
 }
 </script>
 
@@ -55,7 +74,7 @@ div.modal {
   border: 2px solid #205295;
   border-radius: 10px;
   width: 80%;
-  height: 60%;
+  min-height: 60%;
 }
 
 h3 {
@@ -67,18 +86,20 @@ p {
   font-size: 1.4rem;
 }
 
-.assesment {
+.assessment {
   display: flex;
   align-items: center;
+  justify-content: space-around;
   margin-top: 40px;
 }
-.assesment p {
+.assessment p {
+  width: 50%;
   font-size: 1.4rem;
   margin-left: 20px;
+  text-align: justify;
 }
 .img-container {
-  width: 400px;
-  object-fit: contain;
+  width: 40%;
 }
 
 img {
@@ -112,22 +133,32 @@ button {
 }
 
 @media (max-width: 980px) {
-  .assesment {
+  .modal-content {
+    width: 90%;
+    /* height: 80%; */
+  }
+  .assessment {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     margin-top: 10px;
   }
 
-  .modal-content {
+  .assessment p {
     width: 90%;
-    height: 80%;
+    font-size: 1.2rem;
   }
 
   h3 {
     margin-bottom: 10px;
+    margin-top: 40px;
+    font-size: 1.4rem;
   }
   p {
     margin: 10px;
+  }
+
+  .img-container {
+    width: 50%;
   }
 }
 @media (max-width: 680px) {
@@ -135,15 +166,15 @@ button {
     margin: 20% auto;
     padding: 10px;
     border-radius: 10px;
-    width: 80%;
-    height: 80%;
+    /* width: 85%; */
+    /* height: 80%; */
   }
 
   p {
     font-size: 1.1rem;
   }
 
-  img {
+  .img-container {
     width: 60%;
     margin-bottom: 10px;
   }

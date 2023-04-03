@@ -10,20 +10,18 @@ export const useUserStore = defineStore('user', () => {
     date_of_birth: ''
   });
   const isUserLoggedIn = ref(true);
-
-  // const pageRedirect = computed((isUserLoggedIn) => {
-  //   if (isUserLoggedIn) {
-  //     return '/profile';
-  //   } else {
-  //     return '/';
-  //   }
-  // });
+  const diagnosisPhotoPath = ref('');
+  const assesmentValue = ref(null);
 
   function logUserIn(userObject) {
     login.value = userObject;
     if (login.value.email !== '') {
       isUserLoggedIn.value = true;
     }
+  }
+
+  function setDiagnosisPhotoPath(newPath) {
+    diagnosisPhotoPath.value = newPath;
   }
 
   function logUserOut() {
@@ -35,7 +33,11 @@ export const useUserStore = defineStore('user', () => {
     login.value.date_of_birth = newDate;
   }
 
-  return { login, isUserLoggedIn, logUserIn, logUserOut, addDateOfBirth };
+  function setAssesmentValue(valueFromDatabase) {
+    assesmentValue.value = valueFromDatabase;
+  }
+
+  return { login, isUserLoggedIn, logUserIn, logUserOut, addDateOfBirth, setDiagnosisPhotoPath, diagnosisPhotoPath, assesmentValue, setAssesmentValue };
 });
 
     // const doubleCount = computed((isUserLoggedIn) => {

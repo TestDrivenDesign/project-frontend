@@ -54,7 +54,7 @@ const handleLogOut = () => {
 }
 
 const toggleMenuOpen = () => {
-  if (window.innerWidth < 680) {
+  if (window.innerWidth < 768) {
     isMobileMenuOpen.value = !isMobileMenuOpen.value
   } else {
     isMobileMenuOpen.value = false
@@ -194,7 +194,7 @@ button:active {
   }
 }
 
-@media (max-width: 980px) {
+@media (max-width: 1100px) {
   .logo-img {
     width: 150px;
     line-height: 40px;
@@ -211,7 +211,7 @@ button:active {
   }
 }
 
-@media (max-width: 680px) {
+@media (max-width: 768px) {
   .navbar div.main_list {
     display: flex;
     flex-direction: column;

@@ -42,7 +42,7 @@ import { sendPhotoForAssesment } from '../utils/api'
 import Datepicker from 'vue3-datepicker'
 
 const user = useUserStore()
-const { login, addDateOfBirth } = user
+const { login, addDateOfBirth, setDiagnosisPhotoPath, setAssesmentValue } = user
 
 const date_of_birth = ref(null)
 const file = ref(null)
@@ -54,6 +54,7 @@ const uploadFile = (event) => {
 }
 
 const sendPhoto = ($emit) => {
+  setDiagnosisPhotoPath(fileName.value)
   // const formData = new FormData()
   // formData.append('user_id', login.user_id)
   // formData.append('date_of_birth', date_of_birth.value)
@@ -64,12 +65,13 @@ const sendPhoto = ($emit) => {
   // console.log(file.value)
   addDateOfBirth(date_of_birth.value)
   sendPhotoForAssesment(login.user_id, date_of_birth.value, file.value)
-  // .then((response) => {
-  //   console.log(response)
-  // })
-
-  console.log('photo succesfully uploaded')
-  $emit('close')
+    .then((assessmentValueFromDB) => {
+      setAssesmentValue(assessmentValueFromDB)
+      $emit('close')
+    })
+    .catch((err) => {
+      console.log(err)
+    })
 }
 
 const cancelPhotoUpload = ($emit) => {

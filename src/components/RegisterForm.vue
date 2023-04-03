@@ -50,13 +50,13 @@
 import { ref, computed } from 'vue'
 import useVuelidate from '@vuelidate/core'
 import { required, email, minLength, sameAs, helpers } from '@vuelidate/validators'
-import { useRegUsersStore } from '../stores/registeredUsers'
+// import { useRegUsersStore } from '../stores/registeredUsers'
 import { useUserStore } from '../stores/user'
 import router from '../router/index'
 import { postNewUser } from '../utils/api'
 
-const usersRegister = useRegUsersStore()
-const { addNewUser, registeredUsers } = usersRegister
+// const usersRegister = useRegUsersStore()
+// const { addNewUser, registeredUsers } = usersRegister
 
 const user = useUserStore()
 const { logUserIn } = user
@@ -64,7 +64,6 @@ const { logUserIn } = user
 const passwordRegx = helpers.regex(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/) // Minimum eight characters, at least one uppercase letter, one lowercase letter and one number
 
 const formData = ref({
-  // user_id: '',
   first_name: '',
   last_name: '',
   email: '',
@@ -74,13 +73,13 @@ const formData = ref({
 const successMsg = ref('')
 const errorMsg = ref('')
 
-const isUserRegistered = () => {
-  const userExist = registeredUsers.some((user) => {
-    return user.email === formData.value.email
-  })
+// const isUserRegistered = () => {
+//   const userExist = registeredUsers.some((user) => {
+//     return user.email === formData.value.email
+//   })
 
-  return userExist
-}
+//   return userExist
+// }
 const redirectPage = () => {
   router.push({ path: '/profile' })
 }
@@ -91,14 +90,6 @@ const updateMsg = (result, message) => {
   } else if (result === 'success') {
     successMsg.value = message
   }
-}
-
-const generateId = () => {
-  return Math.random() * 1000
-}
-
-const assigUserId = () => {
-  formData.value.user_id = generateId()
 }
 
 const rules = computed(() => {
@@ -135,31 +126,28 @@ const submitRegisterForm = async () => {
   const result = await v$.value.$validate()
 
   if (result) {
-    const userRegistered = isUserRegistered()
-
-    if (!userRegistered) {
-      assigUserId()
-      postNewUser(formData.value)
-      addNewUser(formData.value)
-      updateMsg('success', 'Registration successfull')
-      const loginDetails = {
-        // user_id: formData.value.user_id,
-        first_name: formData.value.first_name,
-        last_name: formData.value.last_name,
-        email: formData.value.email,
-        date_of_birth: ''
-      }
-      console.log(loginDetails)
-      logUserIn(loginDetails)
-      redirectPage()
-      // formData.value.firstName = ''
-      // formData.value.lastName = ''
-      // formData.value.email = ''
-      // formData.value.password = ''
-      // formData.value.passwordConfirm = ''
-    } else {
-      updateMsg('error', 'This email already exist!')
-    }
+    postNewUser(formData.value)
+      .then((newUser) => {
+        const loginDetails = {
+          user_id: newUser.user_id,
+          first_name: newUser.first_name,
+          last_name: newUser.last_name,
+          email: newUser.email,
+          date_of_birth: ''
+        }
+        logUserIn(loginDetails)
+        redirectPage()
+        updateMsg('success', 'Registration successfull')
+        formData.value.firstName = ''
+        formData.value.lastName = ''
+        formData.value.email = ''
+        formData.value.password = ''
+        formData.value.passwordConfirm = ''
+      })
+      .catch((err) => {
+        console.log(err)
+        updateMsg('error', 'This email already exist!')
+      })
   }
 }
 </script>
