@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const usersApi = axios.create({
-  baseURL: 'http://ec2-13-51-251-17.eu-north-1.compute.amazonaws.com'
+  baseURL: 'https://ec2-13-51-251-17.eu-north-1.compute.amazonaws.com'
 });
 
 export const postNewUser = (newUser) => {

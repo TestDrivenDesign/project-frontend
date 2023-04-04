@@ -74,33 +74,4 @@ h2:hover {
   width: 100%;
   height: 100%;
 }
-
-.info .link {
-  flex-basis: 100%;
-  flex-grow: 1;
-  font-weight: bold;
-}
-
-@media (max-width: 680px) {
-  .help-card {
-    width: 80%;
-    padding-left: 10px;
-  }
-  .info img {
-    margin-right: 10px;
-  }
-}
-@media (max-width: 480px) {
-  .help-card {
-    width: 90%;
-  }
-
-  .info img {
-    margin-bottom: 10px;
-  }
-
-  .description {
-    margin-top: 0;
-  }
-}
 </style>
