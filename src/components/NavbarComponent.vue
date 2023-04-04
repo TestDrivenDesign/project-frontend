@@ -1,7 +1,9 @@
 <template>
   <nav class="navbar">
     <div class="logo">
-      <RouterLink to="/"> <img class="logo-img" src="../img/logo.png" alt="logo" /></RouterLink>
+      <RouterLink to="/">
+        <img class="logo-img" src="src/assets/img/logo.png" alt="logo"
+      /></RouterLink>
     </div>
     <!-- <img class="ribbon" src="../img/black-ribbon.png" alt="black ribbon" /> -->
     <div v-bind:class="{ 'mobile-active': isMobileMenuOpen }" id="mainListDiv" class="main_list">

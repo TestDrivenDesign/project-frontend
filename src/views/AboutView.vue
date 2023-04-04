@@ -13,7 +13,7 @@
           an immediate risk assessment based on skin photograph, along with an indication of whether
           to visit a doctor and with what urgency.
         </p>
-        <img class="logo-img" src="../img/logo.png" alt="logo" />
+        <img class="logo-img" src="src/assets/img/logo.png" alt="logo" />
       </div>
     </div>
     <div class="how-to section">
