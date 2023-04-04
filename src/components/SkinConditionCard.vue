@@ -1,22 +1,20 @@
 <template>
   <li class="skin-card">
-    <h2>{{ condition.name }}</h2>
+    <h2>{{ props.condition.name }}</h2>
     <div class="photo-container">
-      <img :src="condition.img1" :alt="condition.name" />
-      <img :src="condition.img2" :alt="condition.name" />
+      <img :src="props.condition.img1" :alt="props.condition.name" />
+      <img :src="props.condition.img2" :alt="props.condition.name" />
     </div>
-    <p>Description: {{ condition.info }}</p>
+    <p>Description: {{ props.condition.info }}</p>
     <p>
-      For more info please visit: <span><a :href="condition.link" target="_blank">Link</a></span>
+      For more info please visit:
+      <span><a :href="props.condition.link" target="_blank">Link</a></span>
     </p>
   </li>
 </template>
 
-<script>
-export default {
-  name: 'conditionInfo',
-  props: ['condition']
-}
+<script setup>
+const props = defineProps(['condition'])
 </script>
 
 <style scoped>
