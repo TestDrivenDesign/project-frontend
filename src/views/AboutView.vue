@@ -9,9 +9,9 @@
           dermatology, posing significant risk to your health and life, with patients far too often
           showing up at the doctor's office too late.<br />
           <br />
-          Skin Scan is an application, created by group of passionates, that offers a possibility to
-          take a self-exam, and receive an immediate risk assessment along with an indication of
-          whether to visit a doctor and with what urgency.
+          Skin Scan is an application, which offers a possibility to take a self-exam, and receive
+          an immediate risk assessment based on skin photograph, along with an indication of whether
+          to visit a doctor and with what urgency.
         </p>
         <img class="logo-img" src="../img/logo.png" alt="logo" />
       </div>

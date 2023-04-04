@@ -26,7 +26,6 @@ const { login, diagnosisPhotoPath, assesmentValue } = user
 
 const path = 'src/img/assessment/' + diagnosisPhotoPath
 
-console.log(typeof assesmentValue)
 const assesment = () => {
   if (assesmentValue === '0') {
     return 'This is description for assessment 0 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, placeat dignissimos dicta, unde ratione numquam exercitationem eos deserunt accusantium, totam quaerat. Consequuntur vitae soluta debitis optio? Voluptas quasi quo eaque.'
@@ -43,7 +42,7 @@ const assesment = () => {
   } else if (assesmentValue === '6') {
     return 'This is description for assessment 6 - Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum, placeat dignissimos dicta, unde ratione numquam exercitationem eos deserunt accusantium, totam quaerat. Consequuntur vitae soluta debitis optio? Voluptas quasi quo eaque.'
   } else {
-    return 'Unable to assess condition of your skin. Try uploading photo again'
+    return 'Unable to assess condition of your skin. Try uploading different photo'
   }
 }
 </script>
