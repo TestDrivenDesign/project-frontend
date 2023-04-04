@@ -24,8 +24,8 @@ import SkinConditionCard from '../components/SkinConditionCard.vue'
 const skinConditionExamples = [
   {
     name: 'actinic keratosis',
-    img1: '../img/actinic_keratosis1.jpg',
-    img2: '../img/actinic_keratosis2.jpg',
+    img1: 'actinic_keratosis1.jpg',
+    img2: 'actinic_keratosis2.jpg',
     info: `Actinic keratoses (also called solar keratoses) are dry scaly patches of skin that have been damaged by the sun.The patches are not usually serious. But there's a small chance they could become skin cancer, so it's important to avoid further damage to your skin.`,
     link: 'https://www.nhs.uk/conditions/actinic-keratoses/#:~:text=Actinic%20keratoses%20(also%20called%20solar,further%20damage%20to%20your%20skin.'
   },

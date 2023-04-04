@@ -2,8 +2,8 @@
   <li class="skin-card">
     <h2>{{ props.condition.name }}</h2>
     <div class="photo-container">
-      <img :src="props.condition.img1" :alt="props.condition.name" />
-      <img :src="props.condition.img2" :alt="props.condition.name" />
+      <img :src="'/img/' + props.condition.img1" :alt="props.condition.name" />
+      <img :src="'/img/' + props.condition.img2" :alt="props.condition.name" />
     </div>
     <p>Description: {{ props.condition.info }}</p>
     <p>
@@ -15,6 +15,11 @@
 
 <script setup>
 const props = defineProps(['condition'])
+
+// function getImageUrl(path) {
+//   let images = require.context('../assets/', false, /\.png$|\.jpg$/)
+//   return images(path)
+// }
 </script>
 
 <style scoped>
