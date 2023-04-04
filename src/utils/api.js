@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const usersApi = axios.create({
-  baseURL: 'https://test-server-for-greg.onrender.com'
+  baseURL: 'http://ec2-13-51-251-17.eu-north-1.compute.amazonaws.com'
 });
 
 export const postNewUser = (newUser) => {
@@ -43,5 +43,13 @@ export const sendPhotoForAssesment = (user_id, date_of_birth, file) => {
     },
   }).then(({ data }) => {
     return data.assessment;
+  });
+};
+export const getAllDiagnoses = (user_id) => {
+  return usersApi.post('/users/diagnoses', {
+    user_id
+  }).then(({ data }) => {
+    console.log(data.diagnoses);
+    return data.diagnoses;
   });
 };
