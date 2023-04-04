@@ -23,7 +23,7 @@
             <span>{{ date_of_birth ? date_of_birth.toLocaleDateString() : '-' }}</span>
           </p>
           <p>
-            chosen file: <span>{{ fileName }}</span>
+            chosen file: <span>{{ file_name }}</span>
           </p>
         </div>
         <div class="buttons-container">
@@ -42,31 +42,21 @@ import { sendPhotoForAssesment } from '../utils/api'
 import Datepicker from 'vue3-datepicker'
 
 const user = useUserStore()
-const { login, addDateOfBirth, setDiagnosisPhotoPath, setAssesmentValue } = user
+const { login, addDateOfBirth } = user
 
 const date_of_birth = ref(null)
 const file = ref(null)
-const fileName = ref('')
+const file_name = ref('')
 
 const uploadFile = (event) => {
   file.value = event.target.files[0]
-  fileName.value = event.target.files[0].name
+  file_name.value = event.target.files[0].name
 }
 
 const sendPhoto = ($emit) => {
-  setDiagnosisPhotoPath(fileName.value)
-  // const formData = new FormData()
-  // formData.append('user_id', login.user_id)
-  // formData.append('date_of_birth', date_of_birth.value)
-  // formData.append('file', file.value)
-  // console.log(formData)
-  // console.log(date_of_birth.value)
-  // console.log(login.user_id)
-  // console.log(file.value)
   addDateOfBirth(date_of_birth.value)
   sendPhotoForAssesment(login.user_id, date_of_birth.value, file.value)
-    .then((assessmentValueFromDB) => {
-      setAssesmentValue(assessmentValueFromDB)
+    .then(() => {
       $emit('close')
     })
     .catch((err) => {
@@ -76,9 +66,9 @@ const sendPhoto = ($emit) => {
 
 const cancelPhotoUpload = ($emit) => {
   $emit('close')
-  // date_of_birth.value = ''
-  // file.value = null
-  // fileName.value = ''
+  date_of_birth.value = ''
+  file.value = null
+  file_name.value = ''
   console.log('cancelled')
 }
 </script>

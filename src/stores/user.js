@@ -10,8 +10,6 @@ export const useUserStore = defineStore('user', () => {
     date_of_birth: ''
   });
   const isUserLoggedIn = ref(false);
-  const diagnosisPhotoPath = ref('');
-  const assesmentValue = ref(null);
 
   function logUserIn(userObject) {
     login.value = userObject;
@@ -20,9 +18,9 @@ export const useUserStore = defineStore('user', () => {
     }
   }
 
-  function setDiagnosisPhotoPath(newPath) {
-    diagnosisPhotoPath.value = newPath;
-  }
+  // function setDiagnosisPhotoPath(newPath) {
+  //   diagnosisPhotoPath.value = newPath;
+  // }
 
   function logUserOut() {
     login.value = '';
@@ -33,15 +31,5 @@ export const useUserStore = defineStore('user', () => {
     login.value.date_of_birth = newDate;
   }
 
-  function setAssesmentValue(valueFromDatabase) {
-    assesmentValue.value = valueFromDatabase;
-  }
-
-  return { login, isUserLoggedIn, logUserIn, logUserOut, addDateOfBirth, setDiagnosisPhotoPath, diagnosisPhotoPath, assesmentValue, setAssesmentValue };
+  return { login, isUserLoggedIn, logUserIn, logUserOut, addDateOfBirth };
 });
-
-    // const doubleCount = computed((isUserLoggedIn) => {
-    //   if (login.value) {
-    //     isUserLoggedIn.value = true;
-    //   }
-    // });

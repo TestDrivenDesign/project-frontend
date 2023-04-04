@@ -3,7 +3,10 @@
     <div class="modal-content">
       <h3>This is your assesment {{ login.first_name }} {{ login.last_name }}</h3>
       <div class="user-info">
-        <p>Your DOB: {{ login.date_of_birth ? login.date_of_birth.toLocaleDateString() : '-' }}</p>
+        <p>
+          Your Date Of Birth:
+          {{ login.date_of_birth ? login.date_of_birth.toLocaleDateString() : '-' }}
+        </p>
       </div>
       <div v-if="currentDiagnosis" class="assessment">
         <div class="img-container">
@@ -12,7 +15,7 @@
         <p>Your result is: {{ assesment(currentDiagnosis.diagnosis) }}</p>
       </div>
       <p v-else>No File Sent</p>
-      <h3>Result History:</h3>
+      <h3>Results History:</h3>
       <div v-for="diagnosis in previousDiagnoses" :key="diagnosis.name" class="prev-diagnosis-list">
         <PreviousDiagnosisCard :diagnosis="diagnosis" :assessment="assesment" />
       </div>
@@ -32,7 +35,6 @@ import PreviousDiagnosisCard from '../components/PreviousDiagnosisCard.vue'
 const user = useUserStore()
 const { login } = user
 const currentDiagnosis = ref({})
-// const currentDiagnosisResult = ref('')
 
 const previousDiagnoses = ref([])
 
@@ -42,9 +44,6 @@ function showPreviousDiagnoses(newDiagnoses) {
 
 function setCurrentDiagnosisValue(diagnosisFromApi) {
   currentDiagnosis.value = diagnosisFromApi
-  // currentDiagnosisResult.value = diagnosisFromApi.diagnosis
-  //   console.log(currentDiagnosisResult.value)
-  //   console.log(currentDiagnosisPath.value)
 }
 
 function getPreviousDiagnoses() {
@@ -144,8 +143,8 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  top: 1%;
-  right: 1%;
+  top: 5px;
+  right: 4px;
   cursor: pointer;
   background-color: transparent;
   font-size: 1.2rem;

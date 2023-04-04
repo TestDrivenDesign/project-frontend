@@ -49,7 +49,6 @@ export const getAllDiagnoses = (user_id) => {
   return usersApi.post('/users/diagnoses', {
     user_id
   }).then(({ data }) => {
-    console.log(data.diagnoses);
     return data.diagnoses;
   });
 };

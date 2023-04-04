@@ -1,13 +1,13 @@
 <template>
   <li class="prev-card">
     <h2 @click="handleExpandDescription" class="accordion">
-      <font-awesome-icon v-bind:icon="expandIcon" /> {{ props.diagnosis.submitted_at }}
+      <font-awesome-icon v-bind:icon="expandIcon" /> {{ assessmentCreated }}
     </h2>
     <Collapse :when="isExpanded" class="diagnosis">
       <div class="img-container">
         <img :src="props.diagnosis.file_name" :alt="props.diagnosis.submitted_at" />
       </div>
-      <p class="description">assesment: {{ assesmentResult }}</p>
+      <p class="description">assesment: {{ assessmentResult }}</p>
     </Collapse>
   </li>
 </template>
@@ -18,7 +18,8 @@ import { Collapse } from 'vue-collapsed'
 
 const props = defineProps(['diagnosis', 'assessment'])
 
-const assesmentResult = props.assessment(props.diagnosis.diagnosis)
+const assessmentResult = props.assessment(props.diagnosis.diagnosis)
+const assessmentCreated = new Date(props.diagnosis.submitted_at).toUTCString()
 const isExpanded = ref(false)
 const expandIcon = ref('fa-solid fa-chevron-down')
 
@@ -63,8 +64,8 @@ h2:hover {
 }
 
 .img-container {
-  width: 200px;
-  height: 200px;
+  width: 250px;
+  height: 250px;
   margin-right: 20px;
   margin-bottom: 20px;
 }
