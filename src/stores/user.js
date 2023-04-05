@@ -1,4 +1,4 @@
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 import { defineStore } from 'pinia';
 
 export const useUserStore = defineStore('user', () => {
@@ -10,6 +10,21 @@ export const useUserStore = defineStore('user', () => {
     date_of_birth: ''
   });
   const isUserLoggedIn = ref(false);
+  const photoUploadSuccess = ref('');
+
+  function updatePhotoSuccess(message) {
+    photoUploadSuccess.value = message;
+  }
+
+  // const displayUploadMessage = computed((photoUploadProgress) => {
+  //   if (photoUploadProgress) return 'Photo Upload In progress...';
+  //   else return '';
+  // });
+
+  const displaySuccessMessage = computed((photoUploadSuccess) => {
+    if (photoUploadSuccess) return 'Photo Uploaded!';
+    else return '';
+  });
 
   function logUserIn(userObject) {
     login.value = userObject;
@@ -25,11 +40,12 @@ export const useUserStore = defineStore('user', () => {
   function logUserOut() {
     login.value = '';
     isUserLoggedIn.value = false;
+    updatePhotoSuccess(false);
   }
 
   function addDateOfBirth(newDate) {
     login.value.date_of_birth = newDate;
   }
 
-  return { login, isUserLoggedIn, logUserIn, logUserOut, addDateOfBirth };
+  return { login, isUserLoggedIn, logUserIn, logUserOut, addDateOfBirth, photoUploadSuccess, updatePhotoSuccess, displaySuccessMessage };
 });

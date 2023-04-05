@@ -14,6 +14,7 @@
         <button @click="uploadModalActive = true">Submit photo for assesment</button>
       </div>
       <div class="show-assessment">
+        <p class="success" v-if="successState">Photo Uploaded!</p>
         <h3>Check your assesment based on photo provided:</h3>
         <button @click="assesmentModalActive = true">Check assesment</button>
       </div>
@@ -25,7 +26,11 @@
     </div>
     <font-awesome-icon class="user-icon" icon="fa-solid fa-user" />
   </div>
-  <PhotoUpload v-if="uploadModalActive" @close="uploadModalActive = false" />
+  <PhotoUpload
+    v-if="uploadModalActive"
+    @close="uploadModalActive = false"
+    :updateSuccessState="updateSuccessState"
+  />
   <AssesmentComponent v-if="assesmentModalActive" @close="assesmentModalActive = false" />
 </template>
 
@@ -37,10 +42,26 @@ import PhotoUpload from '../components/PhotoUpload.vue'
 import AssesmentComponent from '../components/AssessmentComponent.vue'
 
 const user = useUserStore()
-const { login } = user
+const { login, updatePhotoSuccess, photoUploadSuccess, displaySuccessMessage } = user
 
 const uploadModalActive = ref(false)
 const assesmentModalActive = ref(false)
+const successState = ref(false)
+// const photoUploaded = ref(false)
+
+const updateSuccessState = (newState) => {
+  successState.value = newState
+  setTimeout(() => {
+    successState.value = false
+  }, 3000)
+}
+// const showPhotoUploaded = () => {
+//   setTimeout(() => {
+//     updateSuccessMsg('Upload Success!')
+//   }, 5000)
+//   updateSuccessMsg('')
+//   updatePhotoSuccessState(false)
+// }
 </script>
 
 <style scoped>
@@ -69,6 +90,10 @@ p span {
   font-weight: bold;
 }
 
+p.success {
+  font-size: 1.2;
+  color: rgb(6, 163, 6);
+}
 .photo-upload {
   margin-top: 50px;
   width: 50%;

@@ -26,6 +26,7 @@
             chosen file: <span>{{ file_name }}</span>
           </p>
         </div>
+        <p v-if="photoUploadProgress">{{ photoUploadProgress }}</p>
         <div class="buttons-container">
           <button type="submit" class="confirm">Send Photo</button>
           <button @click="cancelPhotoUpload($emit)" class="cancel">Cancel</button>
@@ -36,28 +37,36 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { useUserStore } from '../stores/user'
 import { sendPhotoForAssesment } from '../utils/api'
 import Datepicker from 'vue3-datepicker'
 
 const user = useUserStore()
-const { login, addDateOfBirth } = user
+const { login, addDateOfBirth, updatePhotoSuccess } = user
+const props = defineProps(['updateSuccessState'])
 
 const date_of_birth = ref(null)
 const file = ref(null)
 const file_name = ref('')
+const photoUploadProgress = ref('')
 
 const uploadFile = (event) => {
   file.value = event.target.files[0]
   file_name.value = event.target.files[0].name
 }
 
+const updatePhotoUploadProgress = (message) => {
+  photoUploadProgress.value = message
+}
 const sendPhoto = ($emit) => {
+  updatePhotoUploadProgress('Photo upload in progress...')
   addDateOfBirth(date_of_birth.value)
   sendPhotoForAssesment(login.user_id, date_of_birth.value, file.value)
     .then(() => {
       $emit('close')
+      props.updateSuccessState(true)
+      updatePhotoSuccess('Upload Success')
     })
     .catch((err) => {
       console.log(err)

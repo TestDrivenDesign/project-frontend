@@ -15,7 +15,8 @@ export const postNewUser = (newUser) => {
       "Content-Type": "multipart/form-data",
     },
   }).then(({ data }) => {
-    return data.userData;
+    console.log(data.user);
+    return data.user[0];
   });
 };
 
@@ -28,7 +29,7 @@ export const postUserLogin = (user) => {
       "Content-Type": "multipart/form-data",
     },
   }).then(({ data }) => {
-    return data.userData;
+    return data.user;
   });
 };
 
